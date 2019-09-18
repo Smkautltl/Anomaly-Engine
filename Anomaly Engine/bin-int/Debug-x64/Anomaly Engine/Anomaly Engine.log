@@ -1,6 +1,0 @@
-﻿  Log.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Log.h(18,54): warning C4251:  'Anomaly::Log::s_CoreLogger': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'Anomaly::Log'
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\vendor\spdlog\include\spdlog\details\registry.h(33): message :  see declaration of 'std::shared_ptr<spdlog::logger>'
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Log.h(19,56): warning C4251:  'Anomaly::Log::s_ClientLogger': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'Anomaly::Log'
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\vendor\spdlog\include\spdlog\details\registry.h(33): message :  see declaration of 'std::shared_ptr<spdlog::logger>'
-  Anomaly Engine.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\bin\Debug-x64\Anomaly Engine\Anomaly Engine.dll
