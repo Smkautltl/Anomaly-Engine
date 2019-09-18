@@ -1,3 +1,2 @@
-﻿  Application.cpp
-D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\Application.cpp(8,1): warning C4326:  return type of 'main' should be 'int' instead of 'void'
+﻿  SandboxApp.cpp
   Sandbox.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\bin\Debug-x64\Sandbox\Sandbox.exe
