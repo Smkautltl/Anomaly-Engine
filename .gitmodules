@@ -1,0 +1,3 @@
+[submodule "Anomaly Engine/Vendor/spdlog"]
+	path = Anomaly Engine/Vendor/spdlog
+	url = https://github.com/gabime/spdlog
