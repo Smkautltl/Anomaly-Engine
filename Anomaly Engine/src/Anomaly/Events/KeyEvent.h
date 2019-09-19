@@ -1,8 +1,6 @@
 #pragma once
 #include "Event.h"
 
-#include <sstream>
-
 namespace  Anomaly
 {
 	//This class is not really an event that can be called it just a base for the pressed and released events below 

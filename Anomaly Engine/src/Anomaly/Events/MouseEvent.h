@@ -1,8 +1,6 @@
 #pragma once
 #include "Event.h"
 
-#include <sstream>
-
 namespace Anomaly
 {
 	class ANOMALY_API MouseMoveEvent : public Event

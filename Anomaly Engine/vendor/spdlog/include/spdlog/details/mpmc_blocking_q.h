@@ -1,7 +1,9 @@
-// Copyright(c) 2015-present, Gabi Melman & spdlog contributors.
-// Distributed under the MIT License (http://opensource.org/licenses/MIT)
-
 #pragma once
+
+//
+// Copyright(c) 2018 Gabi Melman.
+// Distributed under the MIT License (http://opensource.org/licenses/MIT)
+//
 
 // multi producer-multi consumer blocking queue.
 // enqueue(..) - will block until room found to put the new message.
@@ -25,7 +27,8 @@ public:
     using item_type = T;
     explicit mpmc_blocking_queue(size_t max_items)
         : q_(max_items)
-    {}
+    {
+    }
 
 #ifndef __MINGW32__
     // try to enqueue and block if no room left
@@ -59,8 +62,7 @@ public:
             {
                 return false;
             }
-            popped_item = std::move(q_.front());
-            q_.pop_front();
+            q_.pop_front(popped_item);
         }
         pop_cv_.notify_one();
         return true;
@@ -70,7 +72,7 @@ public:
     // apparently mingw deadlocks if the mutex is released before cv.notify_one(),
     // so release the mutex at the very end each function.
 
-   // try to enqueue and block if no room left
+    // try to enqueue and block if no room left
     void enqueue(T &&item)
     {
         std::unique_lock<std::mutex> lock(queue_mutex_);
@@ -85,7 +87,6 @@ public:
         std::unique_lock<std::mutex> lock(queue_mutex_);
         q_.push_back(std::move(item));
         push_cv_.notify_one();
-
     }
 
     // try to dequeue item. if no item found. wait upto timeout and try again
@@ -97,8 +98,7 @@ public:
         {
             return false;
         }
-        popped_item = std::move(q_.front());
-        q_.pop_front();
+        q_.pop_front(popped_item);
         pop_cv_.notify_one();
         return true;
     }

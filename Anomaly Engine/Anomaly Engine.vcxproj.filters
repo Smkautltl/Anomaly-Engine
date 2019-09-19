@@ -4,6 +4,9 @@
     <Filter Include="Anomaly">
       <UniqueIdentifier>{D68FF697-426F-7533-4B87-000AB7E5DB94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Anomaly\Events">
+      <UniqueIdentifier>{FA4E9D57-E61C-915D-CFB0-0184BB1D6DC2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Anomaly.h" />
@@ -16,13 +19,22 @@
     <ClInclude Include="src\Anomaly\EntryPoint.h">
       <Filter>Anomaly</Filter>
     </ClInclude>
+    <ClInclude Include="src\Anomaly\Events\ApplicationEvent.h">
+      <Filter>Anomaly\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Events\Event.h">
+      <Filter>Anomaly\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Events\KeyEvent.h">
+      <Filter>Anomaly\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Events\MouseEvent.h">
+      <Filter>Anomaly\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Anomaly\Log.h">
       <Filter>Anomaly</Filter>
     </ClInclude>
-    <ClInclude Include="src\Anomaly\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Anomaly\Events\Event.h" />
-    <ClInclude Include="src\Anomaly\Events\KeyEvent.h" />
-    <ClInclude Include="src\Anomaly\Events\MouseEvent.h" />
+    <ClInclude Include="src\aepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -31,5 +43,6 @@
     <ClCompile Include="src\Anomaly\Log.cpp">
       <Filter>Anomaly</Filter>
     </ClCompile>
+    <ClCompile Include="src\aepch.cpp" />
   </ItemGroup>
 </Project>

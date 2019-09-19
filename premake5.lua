@@ -18,6 +18,9 @@ workspace "Anomaly Engine"
  targetdir ("bin/" .. outputdir .. "/%{prj.name}")
  objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+ pchheader "aepch.h"
+ pchsource "Anomaly Engine/src/aepch.cpp"
+
  files
  {
   "%{prj.name}/src/**.h",
