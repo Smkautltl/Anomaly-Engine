@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Core.h"
-
+#include "aepch.h"
+#include "Anomaly/Core.h"
 
 namespace Anomaly
 {
