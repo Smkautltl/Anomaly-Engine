@@ -19,6 +19,10 @@
     <ClInclude Include="src\Anomaly\Log.h">
       <Filter>Anomaly</Filter>
     </ClInclude>
+    <ClInclude Include="src\Anomaly\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Anomaly\Events\Event.h" />
+    <ClInclude Include="src\Anomaly\Events\KeyEvent.h" />
+    <ClInclude Include="src\Anomaly\Events\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
