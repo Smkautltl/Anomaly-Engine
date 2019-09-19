@@ -10,6 +10,12 @@ workspace "Anomaly Engine"
 
  outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+ -- Include directories relative to root folder (sln DIR)
+ IncludeDir = {}
+ IncludeDir["GLFW"] = "Anomaly Engine/vendor/GLFW/include"
+ 
+ include "Anomaly Engine/vendor/GLFW"
+ 
  project "Anomaly Engine"
  location "Anomaly Engine"
  kind "SharedLib"
@@ -31,7 +37,14 @@ workspace "Anomaly Engine"
  {
 
   "%{prj.name}/src",
-  "%{prj.name}/vendor/spdlog/include"
+  "%{prj.name}/vendor/spdlog/include",
+  "&{IncludeDir.GLFW}"
+ }
+ 
+ links
+ {
+	"GLFW",
+	"opengl32.lib"
  }
 
  filter "system:windows"

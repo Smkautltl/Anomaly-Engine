@@ -7,6 +7,12 @@
     <Filter Include="Anomaly\Events">
       <UniqueIdentifier>{FA4E9D57-E61C-915D-CFB0-0184BB1D6DC2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{b27ba239-b1dc-443b-96b7-769dff5a1142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{5da36c4e-9e27-4c47-af6b-22ab53554035}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Anomaly.h" />
@@ -35,6 +41,10 @@
       <Filter>Anomaly</Filter>
     </ClInclude>
     <ClInclude Include="src\aepch.h" />
+    <ClInclude Include="src\Anomaly\Window.h" />
+    <ClInclude Include="WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -44,5 +54,8 @@
       <Filter>Anomaly</Filter>
     </ClCompile>
     <ClCompile Include="src\aepch.cpp" />
+    <ClCompile Include="WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,3 +1,6 @@
 [submodule "Anomaly Engine/Vendor/spdlog"]
 	path = Anomaly Engine/Vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Anomaly Engine/vendor/GLFW"]
+	path = Anomaly Engine/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
