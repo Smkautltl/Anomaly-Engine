@@ -1,6 +1,7 @@
 #pragma once
 //For use by anomaly applications
 #include "Anomaly/Application.h"
+#include "Anomaly/Layer.h"
 #include "Anomaly/Log.h"
 
 //---Entry point--------------------

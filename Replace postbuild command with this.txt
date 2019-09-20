@@ -1,0 +1,1 @@
+xcopy y r $(SolutionDir)binDebug-windows-x86_64Anomaly EngineAnomaly Engine.dll $(SolutionDir)binDebug-windows-x86_64Sandbox

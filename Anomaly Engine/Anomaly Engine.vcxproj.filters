@@ -41,9 +41,17 @@
       <Filter>Anomaly</Filter>
     </ClInclude>
     <ClInclude Include="src\aepch.h" />
-    <ClInclude Include="src\Anomaly\Window.h" />
-    <ClInclude Include="WindowsWindow.h">
+    <ClInclude Include="src\Anomaly\Window.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Layer.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\LayerStack.h">
+      <Filter>Anomaly</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -54,8 +62,14 @@
       <Filter>Anomaly</Filter>
     </ClCompile>
     <ClCompile Include="src\aepch.cpp" />
-    <ClCompile Include="WindowsWindow.cpp">
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Layer.cpp">
+      <Filter>Anomaly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\LayerStack.cpp">
+      <Filter>Anomaly</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

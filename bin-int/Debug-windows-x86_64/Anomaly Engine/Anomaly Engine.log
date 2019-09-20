@@ -1,14 +1,36 @@
 ﻿  Application.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23,35): warning C4251:  'Anomaly::Application::m_Window': class 'std::unique_ptr<Anomaly::Window,std::default_delete<_Ty>>' needs to have dll-interface to be used by clients of class 'Anomaly::Application'
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23,35): warning C4251:         with
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23,35): warning C4251:         [
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23,35): warning C4251:             _Ty=Anomaly::Window
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23,35): warning C4251:         ]
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23): message :  see declaration of 'std::unique_ptr<Anomaly::Window,std::default_delete<_Ty>>'
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23): message :         with
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23): message :         [
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23): message :             _Ty=Anomaly::Window
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(23): message :         ]
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Layer.h(22,26): warning C4251:  'Anomaly::Layer::m_DebugName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Anomaly::Layer'
+D:\Programs\Visual Studio 2019\VC\Tools\MSVC\14.22.27905\include\xstring(4343): message :  see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(26,31): warning C4251:  'Anomaly::LayerStack::m_Layers': class 'std::vector<Anomaly::Layer *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Anomaly::LayerStack'
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(26,31): warning C4251:         with
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(26,31): warning C4251:         [
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(26,31): warning C4251:             _Ty=Anomaly::Layer *
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(26,31): warning C4251:         ]
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(22): message :  see declaration of 'std::vector<Anomaly::Layer *,std::allocator<_Ty>>'
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(22): message :         with
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(22): message :         [
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(22): message :             _Ty=Anomaly::Layer *
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(22): message :         ]
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(27,46): warning C4251:  'Anomaly::LayerStack::m_LayerInsert': class 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' needs to have dll-interface to be used by clients of class 'Anomaly::LayerStack'
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(27,46): warning C4251:         with
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(27,46): warning C4251:         [
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(27,46): warning C4251:             _Ty=Anomaly::Layer *
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\LayerStack.h(27,46): warning C4251:         ]
+D:\Programs\Visual Studio 2019\VC\Tools\MSVC\14.22.27905\include\vector(362): message :  see declaration of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+D:\Programs\Visual Studio 2019\VC\Tools\MSVC\14.22.27905\include\vector(362): message :         with
+D:\Programs\Visual Studio 2019\VC\Tools\MSVC\14.22.27905\include\vector(362): message :         [
+D:\Programs\Visual Studio 2019\VC\Tools\MSVC\14.22.27905\include\vector(362): message :             _Ty=Anomaly::Layer *
+D:\Programs\Visual Studio 2019\VC\Tools\MSVC\14.22.27905\include\vector(362): message :         ]
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30,35): warning C4251:  'Anomaly::Application::m_Window': class 'std::unique_ptr<Anomaly::Window,std::default_delete<_Ty>>' needs to have dll-interface to be used by clients of class 'Anomaly::Application'
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30,35): warning C4251:         with
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30,35): warning C4251:         [
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30,35): warning C4251:             _Ty=Anomaly::Window
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30,35): warning C4251:         ]
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30): message :  see declaration of 'std::unique_ptr<Anomaly::Window,std::default_delete<_Ty>>'
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30): message :         with
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30): message :         [
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30): message :             _Ty=Anomaly::Window
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Application.h(30): message :         ]
   Anomaly Engine.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\..\bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.dll
   D:\Programming Learning\C++\Anomaly Engine\bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.dll
   1 File(s) copied
