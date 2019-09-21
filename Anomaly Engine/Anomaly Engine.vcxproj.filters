@@ -8,10 +8,10 @@
       <UniqueIdentifier>{FA4E9D57-E61C-915D-CFB0-0184BB1D6DC2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform">
-      <UniqueIdentifier>{b27ba239-b1dc-443b-96b7-769dff5a1142}</UniqueIdentifier>
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{5da36c4e-9e27-4c47-af6b-22ab53554035}</UniqueIdentifier>
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,33 +37,26 @@
     <ClInclude Include="src\Anomaly\Events\MouseEvent.h">
       <Filter>Anomaly\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Anomaly\Log.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
-    <ClInclude Include="src\aepch.h" />
-    <ClInclude Include="src\Anomaly\Window.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Anomaly\Layer.h">
       <Filter>Anomaly</Filter>
     </ClInclude>
     <ClInclude Include="src\Anomaly\LayerStack.h">
       <Filter>Anomaly</Filter>
     </ClInclude>
+    <ClInclude Include="src\Anomaly\Log.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Window.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\aepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
       <Filter>Anomaly</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Anomaly\Log.cpp">
-      <Filter>Anomaly</Filter>
-    </ClCompile>
-    <ClCompile Include="src\aepch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Anomaly\Layer.cpp">
       <Filter>Anomaly</Filter>
@@ -71,5 +64,12 @@
     <ClCompile Include="src\Anomaly\LayerStack.cpp">
       <Filter>Anomaly</Filter>
     </ClCompile>
+    <ClCompile Include="src\Anomaly\Log.cpp">
+      <Filter>Anomaly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\aepch.cpp" />
   </ItemGroup>
 </Project>

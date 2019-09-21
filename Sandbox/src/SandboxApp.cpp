@@ -19,7 +19,6 @@ public:
 	}
 };
 
-
 class Sandbox : public Anomaly::Application
 {
 public:

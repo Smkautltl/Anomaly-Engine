@@ -13,8 +13,10 @@ workspace "Anomaly Engine"
  -- Include directories relative to root folder (sln DIR)
  IncludeDir = {}
  IncludeDir["GLFW"] = "Anomaly Engine/vendor/GLFW/include"
+ IncludeDir["GLAD"] = "Anomaly Engine/vendor/GLAD/include"
  
  include "Anomaly Engine/vendor/GLFW"
+ include "Anomaly Engine/vendor/GLAD"
  
  project "Anomaly Engine"
  location "Anomaly Engine"
@@ -38,12 +40,14 @@ workspace "Anomaly Engine"
 
   "%{prj.name}/src",
   "%{prj.name}/vendor/spdlog/include",
-  "&{IncludeDir.GLFW}"
+  "%{IncludeDir.GLFW}",
+  "%{IncludeDir.GLAD}"
  }
  
  links
  {
 	"GLFW",
+	"GLAD",
 	"opengl32.lib"
  }
 
@@ -55,7 +59,8 @@ workspace "Anomaly Engine"
   defines
   {
    "AE_PLATFORM_WINDOWS",
-   "AE_BUILD_DLL"
+   "AE_BUILD_DLL",
+   "GLFW_INCLUDE_NONE"
   }
 
   postbuildcommands
