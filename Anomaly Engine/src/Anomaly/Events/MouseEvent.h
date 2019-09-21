@@ -3,6 +3,7 @@
 
 namespace Anomaly
 {
+	//This class should be called when the mouse moves
 	class ANOMALY_API MouseMoveEvent : public Event
 	{
 	public:
@@ -25,7 +26,7 @@ namespace Anomaly
 	private:
 		float m_MouseX, m_MouseY;
 	};
-
+	//This class should be called when the scroll wheel is moved
 	class ANOMALY_API MouseScrollEvent : public Event
 	{
 	public:
@@ -48,7 +49,8 @@ namespace Anomaly
 	private:
 		float m_XOffset, m_YOffset;
 	};
-
+	
+	//This class is for the mouse buttons but is a base class
 	class ANOMALY_API MouseButtonEvent : public Event
 	{
 	public:
@@ -62,7 +64,7 @@ namespace Anomaly
 
 		int m_Button;
 	};
-
+	//This class is a child of the mouse button event class and handles mouse press events
 	class ANOMALY_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
@@ -78,6 +80,7 @@ namespace Anomaly
 
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
+	//This class is the same as the mouse pressed class but when a mouse button is released
 	class ANOMALY_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:

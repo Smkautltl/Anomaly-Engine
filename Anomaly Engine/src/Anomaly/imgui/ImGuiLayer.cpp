@@ -13,13 +13,13 @@ namespace Anomaly
 		: Layer("ImGuiLayer")
 	{
 	}
-
 	ImGuiLayer::~ImGuiLayer()
 	{
 	}
 
 	void ImGuiLayer::OnAttach()
 	{
+		//This creates an imgui context
 		ImGui::CreateContext();
 		ImGui::StyleColorsDark();
 
@@ -50,15 +50,17 @@ namespace Anomaly
 		io.KeyMap[ImGuiKey_Y] = GLFW_KEY_Y;
 		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
 
+		//This starts imgui
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
-
 	void ImGuiLayer::OnDetach()
 	{
 	}
-
+	
+	//This updates imgui by getting the screen size and time and making a new frame
 	void ImGuiLayer::OnUpdate()
 	{
+		
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
 		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(),app.GetWindow().GetHeight());

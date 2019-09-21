@@ -7,6 +7,7 @@ namespace Anomaly
 {
 	//The events that are made are blocking so that event will be done there and then
 
+	//Enum of all the event types that will be in the engine
 	enum class EventType
 	{
 		None = 0,
@@ -29,6 +30,8 @@ namespace Anomaly
 		MouseMove,
 		MouseScroll		
 	};
+
+	//Enum of all the event categories in the engine
 	enum EventCategory
 	{
 		None = 0,
@@ -39,10 +42,11 @@ namespace Anomaly
 		EventCategoryMouseButton = BIT(4)
 	};
 
+	//This macro will take in the event type and return the static type
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
 							   virtual EventType GetEventType() const override { return GetStaticType(); }\
 							   virtual const char* GetName() const override { return #type; }
-
+	//This macro will take in a category and return category flags
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 	//This is a base class for events
@@ -50,7 +54,8 @@ namespace Anomaly
 	{
 	public:
 		bool Handled = false;
-		
+
+		//This functions will be overridden by other classes to setup the event
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -63,7 +68,8 @@ namespace Anomaly
 		}
 
 	};
-	
+
+	//This dispatches events and returns if the event has been handled or not
 	class EventDispatcher
 	{
 		template<typename T>

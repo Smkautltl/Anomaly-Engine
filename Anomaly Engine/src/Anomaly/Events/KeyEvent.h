@@ -7,6 +7,7 @@ namespace  Anomaly
 	class ANOMALY_API KeyEvent : public Event
 	{
 	public:
+		//Returns the keycode to the place it is called 
 		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
@@ -18,6 +19,7 @@ namespace  Anomaly
 		int m_KeyCode;
 	};
 
+	//This event is a child of the key event class and sorts out keys pressed down
 	class ANOMALY_API KeyPressedEvent : public KeyEvent
 	{
 	public:
@@ -37,7 +39,7 @@ namespace  Anomaly
 	private:
 		int m_RepeatCount;
 	};
-
+	//This is the same and the pressed event but on key releases
 	class ANOMALY_API KeyReleasedEvent : public KeyEvent
 	{
 	public:

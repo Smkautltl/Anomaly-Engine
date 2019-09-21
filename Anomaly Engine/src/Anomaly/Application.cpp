@@ -9,7 +9,8 @@ namespace Anomaly
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
-	
+
+	//This creates a new window
 	Application::Application()
 	{
 		AE_CORE_ASSERT(!s_Instance, "Application already exists!")

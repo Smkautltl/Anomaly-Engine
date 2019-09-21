@@ -4,7 +4,7 @@
 
 namespace Anomaly
 {
-
+	//This ImGui class is a child class of the layer class and will deal with the imgui events
 	class ANOMALY_API ImGuiLayer : public Layer
 	{
 	public:

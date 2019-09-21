@@ -5,6 +5,7 @@
 
 namespace Anomaly
 {
+	//This a base for layers
 	class ANOMALY_API Layer
 	{
 	public:
