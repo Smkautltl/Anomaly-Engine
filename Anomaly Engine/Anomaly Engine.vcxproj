@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>aepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AE_PLATFORM_WINDOWS;AE_BUILD_DLL;GLFW_INCLUDE_NONE;AE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -94,9 +94,7 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
-      <Message>xcopy /y /r $(SolutionDir)bin\Debug-windows-x86_64\Anomaly Engine $(SolutionDir)bin\Debug-windows-x86_64\Sandbox\</Message>
+      <Command>xcopy "$(SolutionDir)bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.dll" "$(SolutionDir)bin\Debug-windows-x86_64\Sandbox\" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -105,7 +103,7 @@
       <PrecompiledHeaderFile>aepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AE_PLATFORM_WINDOWS;AE_BUILD_DLL;GLFW_INCLUDE_NONE;AE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -123,9 +121,7 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\Anomaly Engine\Anomaly Engine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
-      <Message>xcopy /y /r $(SolutionDir)bin\Debug-windows-x86_64\Anomaly Engine $(SolutionDir)bin\Debug-windows-x86_64\Sandbox\</Message>
+      <Command>xcopy "$(SolutionDir)bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.dll" "$(SolutionDir)bin\Debug-windows-x86_64\Sandbox\" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -134,7 +130,7 @@
       <PrecompiledHeaderFile>aepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AE_PLATFORM_WINDOWS;AE_BUILD_DLL;GLFW_INCLUDE_NONE;AE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -152,12 +148,11 @@
       <ImportLibrary>..\bin\Dist-windows-x86_64\Anomaly Engine\Anomaly Engine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
-      <Message>xcopy /y /r $(SolutionDir)bin\Debug-windows-x86_64\Anomaly Engine $(SolutionDir)bin\Debug-windows-x86_64\Sandbox\</Message>
+      <Command>xcopy "$(SolutionDir)bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.dll" "$(SolutionDir)bin\Debug-windows-x86_64\Sandbox\" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Anomaly\imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Anomaly.h" />
     <ClInclude Include="src\Anomaly\Application.h" />
     <ClInclude Include="src\Anomaly\Core.h" />
@@ -170,14 +165,17 @@
     <ClInclude Include="src\Anomaly\LayerStack.h" />
     <ClInclude Include="src\Anomaly\Log.h" />
     <ClInclude Include="src\Anomaly\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\imguiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\aepch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Anomaly\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Anomaly\Application.cpp" />
     <ClCompile Include="src\Anomaly\Layer.cpp" />
     <ClCompile Include="src\Anomaly\LayerStack.cpp" />
     <ClCompile Include="src\Anomaly\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\imguiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\aepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -189,6 +187,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\GLAD\GLAD.vcxproj">
       <Project>{5D4A857C-4981-860D-F26D-6C10DE83020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

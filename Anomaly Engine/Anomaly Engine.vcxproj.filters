@@ -13,6 +13,9 @@
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Anomaly\ImGui">
+      <UniqueIdentifier>{bfa215f3-cfc7-4b44-8587-165f277497b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Anomaly.h" />
@@ -53,6 +56,10 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\aepch.h" />
+    <ClInclude Include="src\Anomaly\imgui\ImGuiLayer.h">
+      <Filter>Anomaly\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\imguiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -71,5 +78,9 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\aepch.cpp" />
+    <ClCompile Include="src\Anomaly\imgui\ImGuiLayer.cpp">
+      <Filter>Anomaly\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\imguiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>

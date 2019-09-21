@@ -9,12 +9,15 @@ namespace Anomaly
 	class ANOMALY_API WindowResizeEvent : public Event
 	{
 	public:
+		//When this event is called it will set the events width and height
 		WindowResizeEvent(unsigned int width, unsigned int height)
 			:m_Width(width), m_Height(height) {}
 
+		//These will return the width and height 
 		inline unsigned int GetWidth() const { return m_Width; }
 		inline unsigned int GetHeight() const { return m_Height; }
 
+		//This will return the width and height in string form
 		std::string ToString() const override
 		{
 			std::stringstream ss;
@@ -22,6 +25,7 @@ namespace Anomaly
 			return ss.str();
 		}
 
+		//Sets the events type and category
 		EVENT_CLASS_TYPE(WindowResize)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
@@ -34,6 +38,7 @@ namespace Anomaly
 	public:
 		WindowCloseEvent() {}
 
+		//Sets the events type and category
 		EVENT_CLASS_TYPE(WindowClose)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
@@ -45,6 +50,7 @@ namespace Anomaly
 	public:
 		ApplicationTickEvent() {}
 
+		//Sets the events type and category
 		EVENT_CLASS_TYPE(AppTick)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
@@ -53,7 +59,8 @@ namespace Anomaly
 	{
 	public:
 		ApplicationUpdateEvent() {}
-		
+
+		//Sets the events type and category
 		EVENT_CLASS_TYPE(AppUpdate)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
@@ -62,7 +69,8 @@ namespace Anomaly
 	{
 	public:
 		ApplicationRenderEvent() {}
-		
+
+		//Sets the events type and category
 		EVENT_CLASS_TYPE(AppRender)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};

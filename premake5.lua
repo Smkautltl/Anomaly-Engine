@@ -14,9 +14,11 @@ workspace "Anomaly Engine"
  IncludeDir = {}
  IncludeDir["GLFW"] = "Anomaly Engine/vendor/GLFW/include"
  IncludeDir["GLAD"] = "Anomaly Engine/vendor/GLAD/include"
+ IncludeDir["ImGui"] = "Anomaly Engine/vendor/imgui"
  
  include "Anomaly Engine/vendor/GLFW"
  include "Anomaly Engine/vendor/GLAD"
+ include "Anomaly Engine/vendor/imgui"
  
  project "Anomaly Engine"
  location "Anomaly Engine"
@@ -41,13 +43,15 @@ workspace "Anomaly Engine"
   "%{prj.name}/src",
   "%{prj.name}/vendor/spdlog/include",
   "%{IncludeDir.GLFW}",
-  "%{IncludeDir.GLAD}"
+  "%{IncludeDir.GLAD}",
+  "%{IncludeDir.ImGui}"
  }
  
  links
  {
 	"GLFW",
 	"GLAD",
+	"ImGui",
 	"opengl32.lib"
  }
 

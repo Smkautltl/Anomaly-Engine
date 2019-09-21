@@ -1,1 +1,1 @@
-xcopy y r $(SolutionDir)bin\Debug-windows-x86_64Anomaly EngineAnomaly Engine.dll $(SolutionDir)bin\Debug-windows-x86_64Sandbox
+xcopy "$(SolutionDir)bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.dll" "$(SolutionDir)bin\Debug-windows-x86_64\Sandbox\" /Y
