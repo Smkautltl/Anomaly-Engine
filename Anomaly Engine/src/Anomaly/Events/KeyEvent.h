@@ -54,4 +54,20 @@ namespace  Anomaly
 		}
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
+
+	class ANOMALY_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int KeyCode)
+			: KeyEvent(KeyCode) {}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "Key Typed Event: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
 }

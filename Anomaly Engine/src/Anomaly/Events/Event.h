@@ -24,6 +24,7 @@ namespace Anomaly
 		
 		KeyPressed,
 		KeyReleased,
+		KeyTyped,
 		
 		MouseButtonPressed,
 		MouseButtonReleased,
