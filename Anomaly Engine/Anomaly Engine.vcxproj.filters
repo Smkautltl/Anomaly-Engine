@@ -60,6 +60,8 @@
       <Filter>Anomaly\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\imguiOpenGLRenderer.h" />
+    <ClInclude Include="src\Anomaly\input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -82,5 +84,6 @@
       <Filter>Anomaly\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\imguiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

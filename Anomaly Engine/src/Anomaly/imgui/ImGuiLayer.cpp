@@ -164,7 +164,6 @@ namespace Anomaly
 		return false;
 	}
 
-	
 	bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
 	{
 		ImGuiIO& io = ImGui::GetIO();
