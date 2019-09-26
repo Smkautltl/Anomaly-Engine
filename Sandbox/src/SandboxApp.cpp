@@ -10,12 +10,17 @@ public:
 
 	void OnUpdate() override
 	{
-		AE_INFO("ExampleLayer::Update");
+		if (Anomaly::Input::IsKeyPressed(AE_KEY_TAB))
+			AE_TRACE("Tab Key is pressed");
 	}
 
 	void OnEvent(Anomaly::Event& event) override
 	{
-		AE_TRACE("{0}", event);
+		if (event.GetEventType() == Anomaly::EventType::KeyPressed)
+		{
+			Anomaly::KeyPressedEvent& e = (Anomaly::KeyPressedEvent&)event;
+			AE_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 

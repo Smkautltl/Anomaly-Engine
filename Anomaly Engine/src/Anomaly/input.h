@@ -12,7 +12,7 @@ namespace Anomaly
 		inline static bool IsMouseButtonPressed(int Button)		{ return s_Instance->IsMouseButtonPressedImpl(Button); }
 		inline static float GetMouseX()							{ return s_Instance->GetMouseXImpl(); }
 		inline static float GetMouseY()							{ return s_Instance->GetMouseYImpl(); }
-		inline static std::pair<float, float> GetMousePos()							{ return s_Instance->GetMousePosImpl(); }
+		inline static std::pair<float, float> GetMousePos()		{ return s_Instance->GetMousePosImpl(); }
 
 	protected:
 		virtual bool IsKeyPressedImpl(int KeyCode) = 0;

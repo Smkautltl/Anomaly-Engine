@@ -59,10 +59,8 @@ namespace Anomaly
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+			
 			m_Window->OnUpdate();
-
-			auto[x, y] = Input::GetMousePos();
-			AE_CORE_TRACE("{0}, {1}", x,y);
 		}
 	}
 	bool Application::OnWindowClose(WindowCloseEvent& e)

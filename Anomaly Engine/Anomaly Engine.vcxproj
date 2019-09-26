@@ -162,9 +162,11 @@
     <ClInclude Include="src\Anomaly\Events\KeyEvent.h" />
     <ClInclude Include="src\Anomaly\Events\MouseEvent.h" />
     <ClInclude Include="src\Anomaly\input.h" />
+    <ClInclude Include="src\Anomaly\KeyCodes.h" />
     <ClInclude Include="src\Anomaly\Layer.h" />
     <ClInclude Include="src\Anomaly\LayerStack.h" />
     <ClInclude Include="src\Anomaly\Log.h" />
+    <ClInclude Include="src\Anomaly\MouseButtonCodes.h" />
     <ClInclude Include="src\Anomaly\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\imguiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
