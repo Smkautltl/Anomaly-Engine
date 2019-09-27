@@ -15,7 +15,5 @@
 #include "Anomaly/Log.h"
 
 #ifdef AE_PLATFORM_WINDOWS
-	#include <Windows.h>
+#include <Windows.h>
 #endif
-
-

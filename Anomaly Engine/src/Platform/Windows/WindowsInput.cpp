@@ -7,7 +7,7 @@
 namespace Anomaly
 {
 	Input* Input::s_Instance = new WindowsInput();
-	
+
 	bool WindowsInput::IsKeyPressedImpl(int KeyCode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
@@ -23,24 +23,27 @@ namespace Anomaly
 
 		return state == GLFW_PRESS;
 	}
+
 	float WindowsInput::GetMouseXImpl()
 	{
-		auto[x, y] = GetMousePosImpl();
+		auto [x, y] = GetMousePosImpl();
 
 		return x;
 	}
+
 	float WindowsInput::GetMouseYImpl()
 	{
-		auto[x, y] = GetMousePosImpl();
+		auto [x, y] = GetMousePosImpl();
 
 		return y;
 	}
+
 	std::pair<float, float> WindowsInput::GetMousePosImpl()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
 
-		return { (float)xpos, (float)ypos };
+		return {static_cast<float>(xpos), static_cast<float>(ypos)};
 	}
 }

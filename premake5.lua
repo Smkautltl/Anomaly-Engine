@@ -15,6 +15,7 @@ workspace "Anomaly Engine"
  IncludeDir["GLFW"] = "Anomaly Engine/vendor/GLFW/include"
  IncludeDir["GLAD"] = "Anomaly Engine/vendor/GLAD/include"
  IncludeDir["ImGui"] = "Anomaly Engine/vendor/imgui"
+ IncludeDir["glm"] = "Anomaly Engine/vendor/glm"
  
  include "Anomaly Engine/vendor/GLFW"
  include "Anomaly Engine/vendor/GLAD"
@@ -44,7 +45,8 @@ workspace "Anomaly Engine"
   "%{prj.name}/vendor/spdlog/include",
   "%{IncludeDir.GLFW}",
   "%{IncludeDir.GLAD}",
-  "%{IncludeDir.ImGui}"
+  "%{IncludeDir.ImGui}",
+  "%{IncludeDir.glm}"
  }
  
  links
@@ -104,7 +106,8 @@ project "Sandbox"
  includedirs
  {
   "Anomaly Engine/vendor/spdlog/include",
-  "Anomaly Engine/src"
+  "Anomaly Engine/src",
+   "%{IncludeDir.glm}"
  }
 
  links

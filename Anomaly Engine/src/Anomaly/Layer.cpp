@@ -1,15 +1,14 @@
 #include "aepch.h"
 #include "Layer.h"
+#include <utility>
 
 namespace Anomaly
 {
-
-	Layer::Layer(const std::string& debugname)
-		: m_DebugName(debugname)
-	{	
+	Layer::Layer(std::string debugname)
+		: m_DebugName(std::move(debugname))
+	{
 	}
 
 	Layer::~Layer()
-	{
-	}
+	= default;
 }

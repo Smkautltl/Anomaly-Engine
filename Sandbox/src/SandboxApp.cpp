@@ -1,11 +1,11 @@
 #include <Anomaly.h>
+
 class ExampleLayer : public Anomaly::Layer
 {
 public:
 	ExampleLayer()
 		: Layer("Example")
 	{
-		
 	}
 
 	void OnUpdate() override
@@ -18,13 +18,13 @@ public:
 	{
 		if (event.GetEventType() == Anomaly::EventType::KeyPressed)
 		{
-			Anomaly::KeyPressedEvent& e = (Anomaly::KeyPressedEvent&)event;
-			AE_TRACE("{0}", (char)e.GetKeyCode());
+			auto& e = dynamic_cast<Anomaly::KeyPressedEvent&>(event);
+			AE_TRACE("{0}", char(e.GetKeyCode()));
 		}
 	}
 };
 
-class Sandbox : public Anomaly::Application
+class Sandbox final : public Anomaly::Application
 {
 public:
 	Sandbox()
@@ -33,7 +33,7 @@ public:
 		PushOverlay(new Anomaly::ImGuiLayer());
 	}
 
-	~Sandbox()
+	virtual ~Sandbox()
 	{
 		
 	}

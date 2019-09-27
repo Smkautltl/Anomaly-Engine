@@ -11,25 +11,25 @@ namespace Anomaly
 	enum class EventType
 	{
 		None = 0,
-		
+
 		WindowClose,
 		WindowResize,
 		WindowFocus,
 		WindowLostFocus,
 		WindowMoved,
-		
+
 		AppTick,
 		AppUpdate,
 		AppRender,
-		
+
 		KeyPressed,
 		KeyReleased,
 		KeyTyped,
-		
+
 		MouseButtonPressed,
 		MouseButtonReleased,
 		MouseMove,
-		MouseScroll		
+		MouseScroll
 	};
 
 	//Enum of all the event categories in the engine
@@ -37,9 +37,9 @@ namespace Anomaly
 	{
 		None = 0,
 		EventCategoryApplication = BIT(0),
-		EventCategoryInput       = BIT(1),
-		EventCategoryKeyboard    = BIT(2),
-		EventCategoryMouse       = BIT(3),
+		EventCategoryInput = BIT(1),
+		EventCategoryKeyboard = BIT(2),
+		EventCategoryMouse = BIT(3),
 		EventCategoryMouseButton = BIT(4)
 	};
 
@@ -54,38 +54,40 @@ namespace Anomaly
 	class ANOMALY_API Event
 	{
 	public:
+		virtual ~Event() = default;
 		bool Handled = false;
 
 		//This functions will be overridden by other classes to setup the event
-		virtual EventType GetEventType() const = 0;
-		virtual const char* GetName() const = 0;
-		virtual int GetCategoryFlags() const = 0;
-		virtual std::string ToString() const { return GetName(); }
+		[[nodiscard]] virtual EventType GetEventType() const = 0;
+		[[nodiscard]] virtual const char* GetName() const = 0;
+		[[nodiscard]] virtual int GetCategoryFlags() const = 0;
+		[[nodiscard]] virtual std::string ToString() const { return GetName(); }
 
 		//Checks to see if the event is in the given categories
-		inline bool IsInCategory(EventCategory category)
+		bool IsInCategory(EventCategory category)
 		{
 			return GetCategoryFlags() & category;
 		}
-
 	};
 
 	//This dispatches events and returns if the event has been handled or not
 	class EventDispatcher
 	{
-		template<typename T>
+		template <typename T>
 		using EventFn = std::function<bool(T&)>;
 
 	public:
-		EventDispatcher(Event& event)
-			: m_Event(event) {}
+		explicit EventDispatcher(Event& event)
+			: m_Event(event)
+		{
+		}
 
-		template<typename T>
+		template <typename T>
 		bool Dispatch(EventFn<T> func)
 		{
-			if(m_Event.GetEventType() == T::GetStaticType())
+			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*static_cast<T*>(&m_Event));
 				return true;
 			}
 			return false;
@@ -99,5 +101,4 @@ namespace Anomaly
 	{
 		return os << e.ToString();
 	}
-	
 }
