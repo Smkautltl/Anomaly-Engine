@@ -1,4 +1,5 @@
 #include <Anomaly.h>
+#include "imgui/imgui.h"
 
 class ExampleLayer : public Anomaly::Layer
 {
@@ -14,6 +15,13 @@ public:
 			AE_TRACE("Tab Key is pressed");
 	}
 
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
+	
 	void OnEvent(Anomaly::Event& event) override
 	{
 		if (event.GetEventType() == Anomaly::EventType::KeyPressed)

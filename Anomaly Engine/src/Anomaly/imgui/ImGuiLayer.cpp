@@ -3,7 +3,6 @@
 #include "ImGuiLayer.h"
 #include <imgui.h>
 
-#define IMGUI_IMPL_API
 #include "examples/imgui_impl_glfw.h"
 #include "examples/imgui_impl_opengl3.h"
 
@@ -12,7 +11,6 @@
 //TEMPORARY=============
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
-
 //======================
 
 namespace Anomaly
@@ -79,20 +77,23 @@ namespace Anomaly
 	{
 		static bool show = true;
 		ImGui::ShowDemoWindow(&show);
+
+		
 		
 	}
 
 	void ImGuiLayer::End()
-	{
+	{	
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
 
 		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
-
+		
 		//Rendering
 		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		if (io.ConfigFlags && ImGuiConfigFlags_ViewportsEnable)
 		{
 			GLFWwindow* backupcurrentcontext = glfwGetCurrentContext();
 			

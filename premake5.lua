@@ -107,6 +107,7 @@ project "Sandbox"
  {
   "Anomaly Engine/vendor/spdlog/include",
   "Anomaly Engine/src",
+  "Anomaly Engine/vendor",
    "%{IncludeDir.glm}"
  }
 
