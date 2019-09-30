@@ -9,6 +9,8 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "Anomaly/imgui/ImGuiLayer.h"
+
 namespace Anomaly
 {
 	class ANOMALY_API Application
@@ -30,6 +32,7 @@ namespace Anomaly
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

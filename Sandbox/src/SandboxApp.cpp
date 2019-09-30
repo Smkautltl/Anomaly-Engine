@@ -30,13 +30,10 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Anomaly::ImGuiLayer());
 	}
 
 	virtual ~Sandbox()
-	{
-		
-	}
+	= default;
 };
 
 Anomaly::Application* Anomaly::CreateApplication()
