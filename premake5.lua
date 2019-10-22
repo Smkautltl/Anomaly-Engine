@@ -23,8 +23,10 @@ workspace "Anomaly Engine"
  
  project "Anomaly Engine"
  location "Anomaly Engine"
- kind "SharedLib"
+ kind "StaticLib"
  language "C++"
+
+ staticruntime "on"
 
  targetdir ("bin/" .. outputdir .. "/%{prj.name}")
  objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -69,11 +71,6 @@ workspace "Anomaly Engine"
    "GLFW_INCLUDE_NONE"
   }
 
-  postbuildcommands
-  {
-   ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-  }
-
  filter "configurations:Debug"
   defines "AE_DEBUG"
   buildoptions "/MDd"
@@ -93,6 +90,7 @@ project "Sandbox"
  location "Sandbox"
  kind "ConsoleApp"
  language "C++"
+ staticruntime "on"
 
  targetdir ("bin/" .. outputdir .. "/%{prj.name}")
  objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -118,7 +116,6 @@ project "Sandbox"
 
  filter "system:windows"
   cppdialect "C++17"
-  staticruntime "On"
   systemversion "latest"
 
   defines
