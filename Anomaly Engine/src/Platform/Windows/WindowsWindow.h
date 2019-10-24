@@ -1,6 +1,6 @@
 #pragma once
 #include "Anomaly/Window.h"
-
+#include "Anomaly/Rendering/RenderingContext.h"
 #include <GLFW/glfw3.h>
 
 namespace Anomaly
@@ -29,7 +29,8 @@ namespace Anomaly
 
 	private:
 		GLFWwindow* m_Window;
-
+		RenderingContext* m_Context;
+		
 		struct WindowData
 		{
 			std::string Title;

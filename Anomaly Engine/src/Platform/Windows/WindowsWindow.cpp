@@ -5,7 +5,7 @@
 #include "Anomaly/Events/MouseEvent.h"
 #include "Anomaly/Events/ApplicationEvent.h"
 
-#include <glad/glad.h>
+#include "Anomaly/Rendering/OpenGLContext.h"
 
 namespace Anomaly
 {
@@ -48,11 +48,10 @@ namespace Anomaly
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow(static_cast<int>(props.Width), static_cast<int>(props.Height), m_Data.Title.c_str(),
-		                            nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		AE_CORE_ASSERT(status, "Failed to initialise GLAD!")
+		m_Window = glfwCreateWindow(static_cast<int>(props.Width), static_cast<int>(props.Height), m_Data.Title.c_str(), nullptr, nullptr);
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -160,7 +159,7 @@ namespace Anomaly
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->Swapbuffers();		
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

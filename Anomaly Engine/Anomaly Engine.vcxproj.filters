@@ -71,6 +71,8 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\aepch.h" />
+    <ClInclude Include="src\Anomaly\Rendering\RenderingContext.h" />
+    <ClInclude Include="src\Anomaly\Rendering\OpenGLContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -98,5 +100,6 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\aepch.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>
