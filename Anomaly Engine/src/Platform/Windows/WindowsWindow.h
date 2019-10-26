@@ -28,8 +28,8 @@ namespace Anomaly
 		virtual void Shutdown();
 
 	private:
-		GLFWwindow* m_Window;
-		RenderingContext* m_Context;
+		GLFWwindow* m_Window{};
+		RenderingContext* m_Context{};
 		
 		struct WindowData
 		{

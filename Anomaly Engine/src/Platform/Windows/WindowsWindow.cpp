@@ -159,7 +159,7 @@ namespace Anomaly
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		m_Context->Swapbuffers();		
+		m_Context->SwapBuffers();		
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
