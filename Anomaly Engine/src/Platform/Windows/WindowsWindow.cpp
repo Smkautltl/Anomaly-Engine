@@ -5,7 +5,7 @@
 #include "Anomaly/Events/MouseEvent.h"
 #include "Anomaly/Events/ApplicationEvent.h"
 
-#include "Anomaly/Rendering/OpenGLContext.h"
+#include "Anomaly/Rendering/OpenGL/OpenGLContext.h"
 
 namespace Anomaly
 {

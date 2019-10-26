@@ -11,6 +11,8 @@
 
 #include "Anomaly/imgui/ImGuiLayer.h"
 
+#include "Rendering/OpenGL/Shader.h"
+
 namespace Anomaly
 {
 	class ANOMALY_API Application
@@ -39,6 +41,7 @@ namespace Anomaly
 		unsigned int m_VertexArray;
 		unsigned int m_VertexBuffer;
 		unsigned int m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader; 
 		
 	private:
 		static Application* s_Instance;
