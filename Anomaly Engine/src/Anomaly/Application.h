@@ -12,6 +12,7 @@
 #include "Anomaly/imgui/ImGuiLayer.h"
 
 #include "Rendering/OpenGL/Shader.h"
+#include "Rendering/Primatives/Buffer.h"
 
 namespace Anomaly
 {
@@ -39,8 +40,8 @@ namespace Anomaly
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArray;
-		unsigned int m_VertexBuffer;
-		unsigned int m_IndexBuffer;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 		std::unique_ptr<Shader> m_Shader; 
 		
 	private:

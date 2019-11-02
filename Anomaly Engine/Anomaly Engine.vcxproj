@@ -156,8 +156,11 @@
     <ClInclude Include="src\Anomaly\LayerStack.h" />
     <ClInclude Include="src\Anomaly\Log.h" />
     <ClInclude Include="src\Anomaly\MouseButtonCodes.h" />
+    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\Shader.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Buffer.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Renderer.h" />
     <ClInclude Include="src\Anomaly\Rendering\RenderingContext.h" />
     <ClInclude Include="src\Anomaly\Window.h" />
     <ClInclude Include="src\Anomaly\imgui\ImGuiLayer.h" />
@@ -173,8 +176,11 @@
     <ClCompile Include="src\Anomaly\Log.cpp" />
     <ClCompile Include="src\Anomaly\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Anomaly\imgui\imguiBuild.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\Shader.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\Buffer.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\Renderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\aepch.cpp">

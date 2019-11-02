@@ -74,6 +74,9 @@
     <ClInclude Include="src\Anomaly\Rendering\RenderingContext.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\Shader.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Buffer.h" />
+    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -103,5 +106,8 @@
     <ClCompile Include="src\aepch.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\Shader.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\Buffer.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\Renderer.cpp" />
   </ItemGroup>
 </Project>
