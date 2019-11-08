@@ -9,30 +9,6 @@
 namespace Anomaly
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-
-	static GLenum ShaderDataType_To_GLenum(ShaderDataType Type)
-	{
-		switch (Type)
-		{
-			case ShaderDataType::Vec:	return GL_FLOAT;
-			case ShaderDataType::Vec2:	return GL_FLOAT;
-			case ShaderDataType::Vec3:	return GL_FLOAT;
-			case ShaderDataType::Vec4:	return GL_FLOAT;
-			
-			case ShaderDataType::Mat3:	return GL_FLOAT;
-			case ShaderDataType::Mat4:	return GL_FLOAT;
-			
-			case ShaderDataType::Int: 	return GL_INT;
-			case ShaderDataType::Int2:	return GL_INT;
-			case ShaderDataType::Int3:	return GL_INT;
-			case ShaderDataType::Int4:	return GL_INT;
-			
-			case ShaderDataType::Bool:	return GL_BOOL;
-		}
-
-		AE_CORE_ASSERT(false, "Unknown shader data type!")
-		return 0;
-	}
 	
 	Application* Application::s_Instance = nullptr;
 
@@ -47,53 +23,39 @@ namespace Anomaly
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
 		
-		float Vertices[3 * 7] =
+		float VerticesAndColour[3 * 7] =
 		{
 		//	  X		 Y		Z		 R		 G		 B		 A
 			-0.5f, -0.5f,  0.0f,	1.0f,	0.05f,	0.05f,	1.0f,
 			 0.5f, -0.5f,  0.0f,	0.05f,	1.0f,	0.05f,	1.0f,
 			 0.0f,  0.5f,  0.0f,	0.05f,	0.05f,	1.0f,	1.0f
 		};
-
-		m_VertexBuffer.reset( VertexBuffer::Create(Vertices, sizeof(Vertices)));
-		
-		{
-			BufferLayout layout = 
-			{
-				{ShaderDataType::Vec3, "a_Position"},
-				{ShaderDataType::Vec4, "a_Colour"}
-			};
-
-			m_VertexBuffer->SetLayout(layout);
-		}
-		
-		uint32_t i = 0;
-		const auto& layout = m_VertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(i);
-			glVertexAttribPointer(i, 
-								  element.GetComponentCount(), 
-								  ShaderDataType_To_GLenum(element.Type), 
-								  element.Normalized ? GL_TRUE : GL_FALSE, 
-								  layout.GetStride(), 
-								  reinterpret_cast<const void*>(element.Offset)
-								 );
-			i++;
-		}
-		
 		uint32_t indices[3] =
 		{
 			0,1,2
 		};
-		
-		m_IndexBuffer.reset( IndexBuffer::Create(indices, sizeof(indices)/ sizeof(uint32_t)) );
+		//This sets up the layout of the Vertex Buffer
+		BufferLayout layout = 
+		{
+				{ShaderDataType::Vec3, "a_Position"},
+				{ShaderDataType::Vec4, "a_Colour"}
+		};
 
-		std::string VertexSrc = 
+		//Sets up all the buffers and arrays needed for rendering
+		std::shared_ptr<VertexBuffer> m_VertexBuffer;
+		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		
+		m_VertexArray.reset(VertexArray::Create());
+		
+		m_VertexBuffer.reset( VertexBuffer::Create(VerticesAndColour, sizeof(VerticesAndColour)));
+		m_VertexBuffer->SetLayout(layout);		
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+		
+		m_IndexBuffer.reset( IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)) );
+		m_VertexArray->AddIndexBuffer(m_IndexBuffer);
+
+		const std::string VertexSrc = 
 			R"(
 				#version 330 core
 
@@ -112,7 +74,7 @@ namespace Anomaly
 				}
 			)";
 
-		std::string FragmentSrc = 
+		const std::string FragmentSrc = 
 			R"(
 				#version 330 core
 
@@ -126,22 +88,81 @@ namespace Anomaly
 					o_Colour = vec4(v_Position * 0.5 + 0.5, 1.0);
 					o_Colour = v_Colour;
 				}
+			)";	
+		m_Shader.reset(new Shader(VertexSrc, FragmentSrc));
+
+//Temporary for testing----------------------------------------------------------------------------
+		float SquareVertices[3 * 4] =
+		{
+		//	  X		 Y		Z
+			-0.8f, -0.8f,  0.0f,
+			 0.8f, -0.8f,  0.0f,
+			 0.8f,  0.8f,  0.0f,
+			-0.8f,  0.8f,  0.0f
+		};
+		uint32_t SquareIndices[6] =
+		{
+			0,1,2,
+			2,3,0
+		};
+		BufferLayout layout2 = 
+		{
+				{ShaderDataType::Vec3, "a_Position"},
+		};
+		
+		m_SquareVertexArray.reset(VertexArray::Create());
+		
+		std::shared_ptr<VertexBuffer> m_SquareVertexBuffer;
+		m_SquareVertexBuffer.reset(VertexBuffer::Create(SquareVertices, sizeof(SquareVertices)));
+		m_SquareVertexBuffer->SetLayout(layout2);
+		m_SquareVertexArray->AddVertexBuffer(m_SquareVertexBuffer);
+		
+		std::shared_ptr<IndexBuffer> m_SquareIndexBuffer;
+		m_SquareIndexBuffer.reset(IndexBuffer::Create(SquareIndices, sizeof(SquareIndices) / sizeof(uint32_t) ));
+		m_SquareVertexArray->AddIndexBuffer(m_SquareIndexBuffer);
+		
+		const std::string VertexSrc2 = 
+			R"(
+				#version 330 core
+
+				layout(location = 0)in vec3 a_Position;			
+
+				out vec3 v_Position;
+		
+				void  main()
+				{
+					gl_Position = vec4(a_Position, 1.0);
+					v_Position = a_Position;
+				}
+			)";
+
+		const std::string FragmentSrc2 = 
+			R"(
+				#version 330 core
+
+				layout(location = 0) out vec4 o_Colour;
+		
+				in vec3 v_Position;
+				in vec4 v_Colour;
+
+				void  main()
+				{
+					o_Colour = vec4(0.5, 0.5, 1.0);
+				}
 			)";
 		
-		m_Shader.reset(new Shader(VertexSrc, FragmentSrc));
-		
+		m_Shader2.reset(new Shader(VertexSrc2, FragmentSrc2));
+//-------------------------------------------------------------------------------------------------
 		
 	}
 
-	Application::~Application()
-	= default;
+	Application::~Application() = default;
 
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
-
 	void Application::PushOverlay(Layer* Overlay)
 	{
 		m_LayerStack.PushOverlay(Overlay);
@@ -160,7 +181,6 @@ namespace Anomaly
 				break;
 		}
 	}
-
 	void Application::Run()
 	{
 		while (m_Running)
@@ -168,9 +188,21 @@ namespace Anomaly
 			glClearColor(0.05, 0.05, 0.05, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			m_Shader2->Bind();
+			m_SquareVertexArray->Bind();
+			auto SquareIndexBuffers = m_SquareVertexArray->GetIndexBuffers();
+			for (const auto& IndexBuffer : SquareIndexBuffers)
+			{
+				glDrawElements(GL_TRIANGLES, IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			}
+						
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			m_VertexArray->Bind();
+			auto IndexBuffers = m_VertexArray->GetIndexBuffers();
+			for (const auto& IndexBuffer : IndexBuffers)
+			{
+				glDrawElements(GL_TRIANGLES, IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			}
 			
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
@@ -183,7 +215,6 @@ namespace Anomaly
 			m_Window->OnUpdate();
 		}
 	}
-
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;

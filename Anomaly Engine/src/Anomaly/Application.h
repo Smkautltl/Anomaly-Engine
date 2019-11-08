@@ -11,8 +11,9 @@
 
 #include "Anomaly/imgui/ImGuiLayer.h"
 
-#include "Rendering/OpenGL/Shader.h"
+#include "Rendering/Primatives/Shader.h"
 #include "Rendering/Primatives/Buffer.h"
+#include "Rendering/Primatives/VertexArray.h"
 
 namespace Anomaly
 {
@@ -39,10 +40,12 @@ namespace Anomaly
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
-		std::unique_ptr<Shader> m_Shader; 
+		std::shared_ptr<VertexArray> m_VertexArray;
+		std::shared_ptr<Shader> m_Shader; 
+		std::shared_ptr<Shader> m_Shader2; 
+
+		std::shared_ptr<VertexArray> m_SquareVertexArray;
+
 		
 	private:
 		static Application* s_Instance;
