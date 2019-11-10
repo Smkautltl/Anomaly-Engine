@@ -10,11 +10,11 @@ namespace Anomaly
 	{
 		switch (Renderer::GetRendererAPI())
 		{
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 				AE_CORE_ASSERT(false, "Renderer API set to None!");
 				return nullptr;
 			
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 				return new OpenGLVertexBuffer(vertices, size);
 				break;
 		}
@@ -27,11 +27,11 @@ namespace Anomaly
 	{
 		switch (Renderer::GetRendererAPI())
 		{
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 				AE_CORE_ASSERT(false, "Renderer API set to None!");
 				return nullptr;
 			
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 				return new OpenGLIndexBuffer(indices, size);
 				break;
 		}

@@ -2,9 +2,8 @@
 #include "Application.h"
 #include "Log.h"
 
-#include <glad/glad.h>
-
 #include "Anomaly/input.h"
+#include "Rendering/Renderer.h"
 
 namespace Anomaly
 {
@@ -42,11 +41,11 @@ namespace Anomaly
 				{ShaderDataType::Vec4, "a_Colour"}
 		};
 
-		//Sets up all the buffers and arrays needed for rendering
+		//Sets up all the buffers and arrays needed for rendering		
+		m_VertexArray.reset(VertexArray::Create());
+
 		std::shared_ptr<VertexBuffer> m_VertexBuffer;
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		
-		m_VertexArray.reset(VertexArray::Create());
 		
 		m_VertexBuffer.reset( VertexBuffer::Create(VerticesAndColour, sizeof(VerticesAndColour)));
 		m_VertexBuffer->SetLayout(layout);		
@@ -54,7 +53,8 @@ namespace Anomaly
 		
 		m_IndexBuffer.reset( IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)) );
 		m_VertexArray->AddIndexBuffer(m_IndexBuffer);
-
+		//-------------------------------------------------------
+		
 		const std::string VertexSrc = 
 			R"(
 				#version 330 core
@@ -184,26 +184,20 @@ namespace Anomaly
 	void Application::Run()
 	{
 		while (m_Running)
-		{
-			glClearColor(0.05, 0.05, 0.05, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
-
-			m_Shader2->Bind();
-			m_SquareVertexArray->Bind();
-			auto SquareIndexBuffers = m_SquareVertexArray->GetIndexBuffers();
-			for (const auto& IndexBuffer : SquareIndexBuffers)
-			{
-				glDrawElements(GL_TRIANGLES, IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
-			}
-						
-			m_Shader->Bind();
-			m_VertexArray->Bind();
-			auto IndexBuffers = m_VertexArray->GetIndexBuffers();
-			for (const auto& IndexBuffer : IndexBuffers)
-			{
-				glDrawElements(GL_TRIANGLES, IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
-			}
+		{		
+			RenderRequest::SetClearColour(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+			RenderRequest::Clear();
 			
+			Renderer::BeginScene();
+			{
+				m_Shader2->Bind();
+				Renderer::Submission(m_SquareVertexArray);
+
+				m_Shader->Bind();
+				Renderer::Submission(m_VertexArray);
+			}
+			Renderer::EndScene();
+
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 

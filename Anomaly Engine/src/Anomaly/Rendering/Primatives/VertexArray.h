@@ -3,7 +3,6 @@
 #include <memory>
 
 #include "Buffer.h"
-#include "../Renderer.h"
 
 namespace Anomaly
 {

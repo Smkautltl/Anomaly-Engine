@@ -1,19 +1,18 @@
 #pragma once
 
+#include "RenderRequest.h"
+
 namespace Anomaly
 {
-	enum class RendererAPI
-	{
-		None = 0,
-		OpenGL = 1
-	};
-
 	class Renderer
 	{
 	public:
-		inline static RendererAPI GetRendererAPI() {return s_RendererAPI;}
-	private:
-		static RendererAPI s_RendererAPI;
+		static void BeginScene();
+		static void EndScene();
+
+		static void Submission(const std::shared_ptr<VertexArray>& vertexarray);		
+		
+		inline static RendererAPI::API GetRendererAPI() {return RendererAPI::GetAPI();}
 	};
 	
 }

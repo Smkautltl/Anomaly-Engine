@@ -3,7 +3,6 @@
 #include "Core.h"
 
 #include "Window.h"
-
 #include "LayerStack.h"
 
 #include "Events/Event.h"
@@ -41,12 +40,11 @@ namespace Anomaly
 		LayerStack m_LayerStack;
 
 		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<Shader> m_Shader; 
+		std::shared_ptr<Shader> m_Shader;
+		
+		std::shared_ptr<VertexArray> m_SquareVertexArray;
 		std::shared_ptr<Shader> m_Shader2; 
 
-		std::shared_ptr<VertexArray> m_SquareVertexArray;
-
-		
 	private:
 		static Application* s_Instance;
 	};

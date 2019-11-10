@@ -1,6 +1,7 @@
 #include "aepch.h"
 #include "VertexArray.h"
 
+#include "Anomaly/Rendering/Renderer.h"
 #include "../OpenGL/OpenGLVertexArray.h"
 
 namespace Anomaly
@@ -9,13 +10,11 @@ namespace Anomaly
 	{
 		switch (Renderer::GetRendererAPI())
 		{
-			case RendererAPI::None:
-				AE_CORE_ASSERT(false, "Renderer API set to None!");
+			case RendererAPI::API::None:
+				AE_CORE_ASSERT(false, "RendererAPI has not been selected!");
 				return nullptr;
-			
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:  
 				return new OpenGLVertexArray();
-				break;
 		}
 
 		AE_CORE_ASSERT(false, "Renderer API has not been set!");
