@@ -11,8 +11,8 @@
 #include "Anomaly/imgui/ImGuiLayer.h"
 
 #include "Rendering/Primatives/Shader.h"
-#include "Rendering/Primatives/Buffer.h"
 #include "Rendering/Primatives/VertexArray.h"
+#include "Rendering/Primatives/Camera.h"
 
 namespace Anomaly
 {
@@ -45,6 +45,8 @@ namespace Anomaly
 		std::shared_ptr<VertexArray> m_SquareVertexArray;
 		std::shared_ptr<Shader> m_Shader2; 
 
+		OrthoCamera m_Camera;
+		
 	private:
 		static Application* s_Instance;
 	};

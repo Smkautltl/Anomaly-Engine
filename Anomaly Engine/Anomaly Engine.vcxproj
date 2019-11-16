@@ -160,6 +160,7 @@
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Camera.h" />
     <ClInclude Include="src\Anomaly\Rendering\Primatives\Shader.h" />
     <ClInclude Include="src\Anomaly\Rendering\Primatives\Buffer.h" />
     <ClInclude Include="src\Anomaly\Rendering\Renderer.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\Camera.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\Primatives\Shader.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\Primatives\Buffer.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\Renderer.cpp" />

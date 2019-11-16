@@ -13,6 +13,7 @@ namespace Anomaly
 
 	//This creates a new window
 	Application::Application()
+		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f, -2.f, 2.f)
 	{
 		AE_CORE_ASSERT(!s_Instance, "Application already exists!")
 		s_Instance = this;
@@ -61,16 +62,17 @@ namespace Anomaly
 
 				layout(location = 0)in vec3 a_Position;
 				layout(location = 1)in vec4 a_Colour;
-				
+
+				uniform mat4 u_ViewProjMatrix;
 
 				out vec3 v_Position;
 				out vec4 v_Colour;
 		
 				void  main()
 				{
-					gl_Position = vec4(a_Position, 1.0);
 					v_Position = a_Position;
 					v_Colour = a_Colour;
+					gl_Position = u_ViewProjMatrix * vec4(a_Position, 1.0);	
 				}
 			)";
 
@@ -126,13 +128,14 @@ namespace Anomaly
 				#version 330 core
 
 				layout(location = 0)in vec3 a_Position;			
-
+				uniform mat4 u_ViewProjMatrix;
+		
 				out vec3 v_Position;
 		
 				void  main()
-				{
-					gl_Position = vec4(a_Position, 1.0);
+				{			
 					v_Position = a_Position;
+					gl_Position = u_ViewProjMatrix * vec4(a_Position, 1.0);
 				}
 			)";
 
@@ -187,14 +190,15 @@ namespace Anomaly
 		{		
 			RenderRequest::SetClearColour(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 			RenderRequest::Clear();
-			
-			Renderer::BeginScene();
-			{
-				m_Shader2->Bind();
-				Renderer::Submission(m_SquareVertexArray);
 
-				m_Shader->Bind();
-				Renderer::Submission(m_VertexArray);
+			m_Camera.SetPosition({0.2f,0.2f,1.f});
+			m_Camera.SetRotation(25.f);
+			
+			Renderer::BeginScene(m_Camera);
+			{
+				Renderer::Submission(m_SquareVertexArray, m_Shader2);
+
+				Renderer::Submission(m_VertexArray, m_Shader);
 			}
 			Renderer::EndScene();
 

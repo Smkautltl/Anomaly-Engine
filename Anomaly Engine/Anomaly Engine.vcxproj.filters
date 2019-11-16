@@ -82,6 +82,7 @@
     <ClInclude Include="src\Anomaly\Rendering\RendererAPI.h" />
     <ClInclude Include="src\Anomaly\Rendering\RenderRequest.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -119,5 +120,6 @@
     <ClCompile Include="src\Anomaly\Rendering\RendererAPI.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\RenderRequest.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\Camera.cpp" />
   </ItemGroup>
 </Project>
