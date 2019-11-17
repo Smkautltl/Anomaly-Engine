@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Core.h"
-
 #include "Window.h"
 #include "LayerStack.h"
 
@@ -10,13 +8,9 @@
 
 #include "Anomaly/imgui/ImGuiLayer.h"
 
-#include "Rendering/Primatives/Shader.h"
-#include "Rendering/Primatives/VertexArray.h"
-#include "Rendering/Primatives/Camera.h"
-
 namespace Anomaly
 {
-	class ANOMALY_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -38,15 +32,7 @@ namespace Anomaly
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<Shader> m_Shader;
-		
-		std::shared_ptr<VertexArray> m_SquareVertexArray;
-		std::shared_ptr<Shader> m_Shader2; 
-
-		OrthoCamera m_Camera;
-		
+	
 	private:
 		static Application* s_Instance;
 	};
