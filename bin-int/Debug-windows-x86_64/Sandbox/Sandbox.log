@@ -1,3 +1,1 @@
-﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
-  SandboxApp.cpp
-  Sandbox.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Sandbox\..\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe
+﻿  Sandbox.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Sandbox\..\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe

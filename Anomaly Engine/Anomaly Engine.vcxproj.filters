@@ -4,8 +4,20 @@
     <Filter Include="Anomaly">
       <UniqueIdentifier>{D68FF697-426F-7533-4B87-000AB7E5DB94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Anomaly\Core">
+      <UniqueIdentifier>{EE09118A-DA6C-A02E-83F2-D8E46F346CB1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Anomaly\Events">
       <UniqueIdentifier>{FA4E9D57-E61C-915D-CFB0-0184BB1D6DC2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Anomaly\Rendering">
+      <UniqueIdentifier>{A39C2810-0FB3-26A6-582A-B2C7C47FF72D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Anomaly\Rendering\OpenGL">
+      <UniqueIdentifier>{775028C1-6375-7741-8CC0-5CD17844765F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Anomaly\Rendering\Primatives">
+      <UniqueIdentifier>{96C9FF55-8284-EF01-2B3C-684C17D63992}</UniqueIdentifier>
     </Filter>
     <Filter Include="Anomaly\imgui">
       <UniqueIdentifier>{C0A5E0CE-2C66-5C05-F5A0-A5826120A1E1}</UniqueIdentifier>
@@ -24,6 +36,9 @@
     </ClInclude>
     <ClInclude Include="src\Anomaly\Core.h">
       <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\TimeStep.h">
+      <Filter>Anomaly\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Anomaly\EntryPoint.h">
       <Filter>Anomaly</Filter>
@@ -55,6 +70,42 @@
     <ClInclude Include="src\Anomaly\MouseButtonCodes.h">
       <Filter>Anomaly</Filter>
     </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.h">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.h">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.h">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.h">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Buffer.h">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Camera.h">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Shader.h">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\VertexArray.h">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\RenderRequest.h">
+      <Filter>Anomaly\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\Renderer.h">
+      <Filter>Anomaly\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\RendererAPI.h">
+      <Filter>Anomaly\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Rendering\RenderingContext.h">
+      <Filter>Anomaly\Rendering</Filter>
+    </ClInclude>
     <ClInclude Include="src\Anomaly\Window.h">
       <Filter>Anomaly</Filter>
     </ClInclude>
@@ -71,18 +122,6 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\aepch.h" />
-    <ClInclude Include="src\Anomaly\Rendering\RenderingContext.h" />
-    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Anomaly\Rendering\Primatives\Buffer.h" />
-    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Anomaly\Rendering\Renderer.h" />
-    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Anomaly\Rendering\Primatives\VertexArray.h" />
-    <ClInclude Include="src\Anomaly\Rendering\Primatives\Shader.h" />
-    <ClInclude Include="src\Anomaly\Rendering\RendererAPI.h" />
-    <ClInclude Include="src\Anomaly\Rendering\RenderRequest.h" />
-    <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Anomaly\Rendering\Primatives\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Application.cpp">
@@ -97,6 +136,39 @@
     <ClCompile Include="src\Anomaly\Log.cpp">
       <Filter>Anomaly</Filter>
     </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.cpp">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>Anomaly\Rendering\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\Buffer.cpp">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\Camera.cpp">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\Shader.cpp">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\Primatives\VertexArray.cpp">
+      <Filter>Anomaly\Rendering\Primatives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\RenderRequest.cpp">
+      <Filter>Anomaly\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\Renderer.cpp">
+      <Filter>Anomaly\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\RendererAPI.cpp">
+      <Filter>Anomaly\Rendering</Filter>
+    </ClCompile>
     <ClCompile Include="src\Anomaly\imgui\ImGuiLayer.cpp">
       <Filter>Anomaly\imgui</Filter>
     </ClCompile>
@@ -110,16 +182,5 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\aepch.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\Primatives\Buffer.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\Renderer.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\Primatives\Shader.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\Primatives\VertexArray.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\RendererAPI.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\RenderRequest.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Anomaly\Rendering\Primatives\Camera.cpp" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ class ExampleLayer : public Anomaly::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f, -2.f, 2.f)
+		: Layer("Example"), m_Camera(-3.2f, 3.2f, -1.8f, 1.8f, -5.f, 5.f)
 	{
 		float VerticesAndColour[3 * 7] =
 		{
@@ -82,15 +82,15 @@ public:
 			float SquareVertices[3 * 4] =
 			{
 		//	  X		 Y		Z
-			-0.8f, -0.8f,  0.0f,
-			 0.8f, -0.8f,  0.0f,
-			 0.8f,  0.8f,  0.0f,
-			-0.8f,  0.8f,  0.0f
+			-1.0f, -1.0f,  0.0f,
+			 1.0f, -1.0f,  0.0f,
+			 1.0f,  1.0f,  0.0f,
+			-1.0f,  1.0f,  0.0f,
 		};
 			uint32_t SquareIndices[6] =
 			{
 			0,1,2,
-			2,3,0
+			2,3,0,
 		};
 			Anomaly::BufferLayout layout2 = 
 			{
@@ -144,33 +144,34 @@ public:
 //-------------------------------------------------------------------------------------------------
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Anomaly::TimeStep deltaTime) override
 	{
+		
 		if(Anomaly::Input::IsKeyPressed(AE_KEY_W))
 		{
-			m_CamPos.y += m_CameraSpeed;
+			m_CamPos.y += m_CameraSpeed * deltaTime;
 		}
 		else if(Anomaly::Input::IsKeyPressed(AE_KEY_S))
 		{
-			m_CamPos.y -= m_CameraSpeed;
+			m_CamPos.y -= m_CameraSpeed * deltaTime;
 		}
 		
 		if(Anomaly::Input::IsKeyPressed(AE_KEY_A))
 		{
-			m_CamPos.x -= m_CameraSpeed;
+			m_CamPos.x -= m_CameraSpeed * deltaTime;
 		}
 		else if(Anomaly::Input::IsKeyPressed(AE_KEY_D))
 		{
-			m_CamPos.x += m_CameraSpeed;
+			m_CamPos.x += m_CameraSpeed * deltaTime;
 		}
 				
 		if(Anomaly::Input::IsKeyPressed(AE_KEY_LEFT))
 		{
-			m_CamRot += (m_CameraSpeed * 10);
+			m_CamRot += (m_CameraSpeed * 10) * deltaTime;
 		}
 		else if(Anomaly::Input::IsKeyPressed(AE_KEY_RIGHT))
 		{
-			m_CamRot -= (m_CameraSpeed * 10);
+			m_CamRot -= (m_CameraSpeed * 10) * deltaTime;
 		}
 		
 		Anomaly::RenderRequest::SetClearColour(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
@@ -182,7 +183,6 @@ public:
 		Anomaly::Renderer::BeginScene(m_Camera);
 		{
 			Anomaly::Renderer::Submission(m_SquareVertexArray, m_Shader2);
-
 			Anomaly::Renderer::Submission(m_VertexArray, m_Shader);
 		}
 		Anomaly::Renderer::EndScene();
@@ -207,7 +207,7 @@ private:
 	Anomaly::OrthoCamera m_Camera;
 	glm::vec3 m_CamPos = {0.f, 0.f, 0.f};
 	float m_CamRot = 0.f;
-	float m_CameraSpeed = 0.05f;
+	float m_CameraSpeed = 3.0f;
 
 };
 

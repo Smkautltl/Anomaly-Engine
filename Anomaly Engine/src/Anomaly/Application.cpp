@@ -3,6 +3,7 @@
 #include "Log.h"
 
 #include "Rendering/Renderer.h"
+#include "GLFW/glfw3.h"
 
 namespace Anomaly
 {
@@ -18,6 +19,7 @@ namespace Anomaly
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetVSync(false);
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);	
@@ -51,9 +53,13 @@ namespace Anomaly
 	void Application::Run()
 	{
 		while (m_Running)
-		{		
+		{
+			float time = static_cast<float>(glfwGetTime());
+			TimeStep DeltaTime = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+			
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(DeltaTime);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)

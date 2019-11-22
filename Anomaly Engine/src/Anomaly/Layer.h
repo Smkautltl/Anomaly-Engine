@@ -2,6 +2,7 @@
 
 #include "Anomaly/Core.h"
 #include "Anomaly/Events/Event.h"
+#include "Core/TimeStep.h"
 
 namespace Anomaly
 {
@@ -20,7 +21,7 @@ namespace Anomaly
 		{
 		}
 
-		virtual void OnUpdate()
+		virtual void OnUpdate(TimeStep deltatime)
 		{
 		}
 

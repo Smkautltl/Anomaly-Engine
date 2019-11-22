@@ -6,6 +6,8 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "Core/TimeStep.h"
+
 #include "Anomaly/imgui/ImGuiLayer.h"
 
 namespace Anomaly
@@ -25,6 +27,7 @@ namespace Anomaly
 
 		static Application& Get() { return *s_Instance; }
 		Window& GetWindow() const { return *m_Window; }
+		
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
@@ -32,6 +35,7 @@ namespace Anomaly
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.f;
 	
 	private:
 		static Application* s_Instance;

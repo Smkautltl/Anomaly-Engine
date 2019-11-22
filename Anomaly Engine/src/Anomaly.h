@@ -4,6 +4,8 @@
 #include "Anomaly/Layer.h"
 #include "Anomaly/Log.h"
 
+#include "Anomaly/Core/TimeStep.h"
+
 #include "Anomaly/input.h"
 #include "Anomaly/KeyCodes.h"
 #include "Anomaly/MouseButtonCodes.h"

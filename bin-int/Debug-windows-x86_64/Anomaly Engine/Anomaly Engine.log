@@ -1,6 +1,3 @@
 ﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
   Application.cpp
-  ImGuiLayer.cpp
-  WindowsInput.cpp
-  Generating Code...
   Anomaly Engine.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\..\bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.lib
