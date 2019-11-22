@@ -4,6 +4,7 @@
 
 #include "Rendering/Renderer.h"
 #include "GLFW/glfw3.h"
+#include "imgui.h"
 
 namespace Anomaly
 {
@@ -19,7 +20,7 @@ namespace Anomaly
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-		m_Window->SetVSync(false);
+		m_Window->SetVSync(true);
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);	
@@ -52,6 +53,8 @@ namespace Anomaly
 	}
 	void Application::Run()
 	{
+		//ImGui::Begin("Editor");
+		//ImGui::DockSpaceOverViewport();	
 		while (m_Running)
 		{
 			float time = static_cast<float>(glfwGetTime());
@@ -68,6 +71,8 @@ namespace Anomaly
 
 			m_Window->OnUpdate();
 		}
+		
+		//ImGui::End();
 	}
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{

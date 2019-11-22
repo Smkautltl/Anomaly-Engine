@@ -15,10 +15,12 @@ namespace Anomaly
 	{
 	}
 
-	void Renderer::Submission(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader)
+	void Renderer::Submission(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform)
 	{
 		shader->Bind();
 		shader->AddUniformMatrix4("u_ViewProjMatrix", m_SceneData->ViewProjMatrix);
+		shader->AddUniformMatrix4("u_Transform", transform);
+		
 		vertexarray->Bind();
 		RenderRequest::DrawCall(vertexarray);
 	}

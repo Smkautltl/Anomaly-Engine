@@ -1,12 +1,14 @@
 #include <Anomaly.h>
 #include "imgui/imgui.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 class ExampleLayer : public Anomaly::Layer
 {
 public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-3.2f, 3.2f, -1.8f, 1.8f, -5.f, 5.f)
-	{
+	{	
 		float VerticesAndColour[3 * 7] =
 		{
 		//	  X		 Y		Z		 R		 G		 B		 A
@@ -24,7 +26,6 @@ public:
 				{Anomaly::ShaderDataType::Vec3, "a_Position"},
 				{Anomaly::ShaderDataType::Vec4, "a_Colour"}
 		};
-
 		
 		//Sets up all the buffers and arrays needed for rendering		
 		m_VertexArray.reset(Anomaly::VertexArray::Create());
@@ -39,43 +40,8 @@ public:
 		m_IndexBuffer.reset(Anomaly::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)) );
 		m_VertexArray->AddIndexBuffer(m_IndexBuffer);
 		//-------------------------------------------------------
-		
-		const std::string VertexSrc = 
-			R"(
-				#version 330 core
 
-				layout(location = 0)in vec3 a_Position;
-				layout(location = 1)in vec4 a_Colour;
-
-				uniform mat4 u_ViewProjMatrix;
-
-				out vec3 v_Position;
-				out vec4 v_Colour;
-		
-				void  main()
-				{
-					v_Position = a_Position;
-					v_Colour = a_Colour;
-					gl_Position = u_ViewProjMatrix * vec4(a_Position, 1.0);	
-				}
-			)";
-
-		const std::string FragmentSrc = 
-			R"(
-				#version 330 core
-
-				layout(location = 0) out vec4 o_Colour;
-		
-				in vec3 v_Position;
-				in vec4 v_Colour;
-
-				void  main()
-				{
-					o_Colour = vec4(v_Position * 0.5 + 0.5, 1.0);
-					o_Colour = v_Colour;
-				}
-			)";	
-		m_Shader.reset(new Anomaly::Shader(VertexSrc, FragmentSrc));
+		m_Shader.reset(new Anomaly::Shader("Triangle.vs", "Triangle.fs"));
 
 //Temporary for testing----------------------------------------------------------------------------
 		{
@@ -106,40 +72,9 @@ public:
 			
 			std::shared_ptr<Anomaly::IndexBuffer> m_SquareIndexBuffer;
 			m_SquareIndexBuffer.reset(Anomaly::IndexBuffer::Create(SquareIndices, sizeof(SquareIndices) / sizeof(uint32_t) ));
-			m_SquareVertexArray->AddIndexBuffer(m_SquareIndexBuffer);
-			
-			const std::string VertexSrc2 = 
-				R"(
-					#version 330 core
+			m_SquareVertexArray->AddIndexBuffer(m_SquareIndexBuffer);		
 
-					layout(location = 0)in vec3 a_Position;			
-					uniform mat4 u_ViewProjMatrix;
-			
-					out vec3 v_Position;
-			
-					void  main()
-					{			
-						v_Position = a_Position;
-						gl_Position = u_ViewProjMatrix * vec4(a_Position, 1.0);
-					}
-				)";
-
-			const std::string FragmentSrc2 = 
-				R"(
-					#version 330 core
-
-					layout(location = 0) out vec4 o_Colour;
-			
-					in vec3 v_Position;
-					in vec4 v_Colour;
-
-					void  main()
-					{
-						o_Colour = vec4(0.5, 0.5, 1.0);
-					}
-				)";
-			
-			m_Shader2.reset(new Anomaly::Shader(VertexSrc2, FragmentSrc2));
+			m_Shader2.reset(new Anomaly::Shader( "Square.vs", "Square.fs"));			
 		}
 //-------------------------------------------------------------------------------------------------
 	}
@@ -182,10 +117,20 @@ public:
 			
 		Anomaly::Renderer::BeginScene(m_Camera);
 		{
-			Anomaly::Renderer::Submission(m_SquareVertexArray, m_Shader2);
+			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+			y += 100;
+			x += 100;
+				
+			glm::vec3 pos = glm::vec3(x * 0.11f, y * 0.11f, 0.0f);
+			glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+			AE_CORE_INFO("{0}", glm::to_string(transform));
+			Anomaly::Renderer::Submission(m_SquareVertexArray, m_Shader2, transform);
 			Anomaly::Renderer::Submission(m_VertexArray, m_Shader);
 		}
 		Anomaly::Renderer::EndScene();
+
+		//ImGui::GetWindowDrawList()->AddImage();
 	}
 
 	void OnImGuiRender() override
@@ -209,6 +154,9 @@ private:
 	float m_CamRot = 0.f;
 	float m_CameraSpeed = 3.0f;
 
+	glm::vec3 squartransfrom = glm::vec3(0.f);
+	int x = 0;
+	int y = 0;
 };
 
 class Sandbox final : public Anomaly::Application

@@ -6,8 +6,6 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
-#include "Core/TimeStep.h"
-
 #include "Anomaly/imgui/ImGuiLayer.h"
 
 namespace Anomaly

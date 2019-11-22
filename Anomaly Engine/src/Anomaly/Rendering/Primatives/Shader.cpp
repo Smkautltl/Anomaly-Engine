@@ -4,10 +4,50 @@
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 
+
 namespace Anomaly
 {
-	Shader::Shader(const std::string& VertexSrc, const std::string& FragmentSrc)
+	void Shader::ReadInShaders(const char* VertexSrcFileName, const char* FragmentSrcFileName)
 	{
+		std::string AppPathVert = __argv[0];	
+		AppPathVert.replace(AppPathVert.end() - 11, AppPathVert.end(), "Shaders\\" + std::string(VertexSrcFileName));
+		const char* vPath = AppPathVert.c_str();
+		
+		std::string AppPathFrag = __argv[0];
+		AppPathFrag.replace(AppPathFrag.end() - 11, AppPathFrag.end(), "Shaders\\" + std::string(FragmentSrcFileName));
+		const char* fPath = AppPathFrag.c_str();
+		
+
+		std::ifstream VertexShaderFile;
+		std::ifstream FragmentShaderFile;
+
+		VertexShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+		FragmentShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+		try
+		{
+			std::stringstream ShaderStreamVert, ShaderStreamFrag;
+			
+			VertexShaderFile.open(vPath);
+			ShaderStreamVert << VertexShaderFile.rdbuf();		
+			VertexSrc = ShaderStreamVert.str();
+			VertexShaderFile.close();
+
+			FragmentShaderFile.open(fPath);
+			ShaderStreamFrag << FragmentShaderFile.rdbuf();
+			FragmentSrc = ShaderStreamFrag.str();
+			FragmentShaderFile.close();
+			
+		}
+		catch (std::ifstream::failure e)
+		{
+			AE_CORE_ERROR("Shader File failed to read!: {0}", e.what());
+		}
+	}
+	
+	Shader::Shader(const char* VertexSrcFileName,const char* FragmentSrcFileName)
+	{
+
+		ReadInShaders(VertexSrcFileName, FragmentSrcFileName);
 		
 		// Create an empty vertex shader handle
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -15,7 +55,7 @@ namespace Anomaly
 		// Send the vertex shader source code to GL
 		// Note that std::string's .c_str is NULL character terminated.
 		const GLchar *source = static_cast<const GLchar *>(VertexSrc.c_str());
-		glShaderSource(vertexShader, 1, &source, 0);
+		glShaderSource(vertexShader, 1, &source, nullptr);
 		
 		// Compile the vertex shader
 		glCompileShader(vertexShader);
@@ -131,9 +171,10 @@ namespace Anomaly
 	}
 
 	void Shader::AddUniformMatrix4(const std::string& name, const glm::mat4& matrix)
-	{
-		
+	{	
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniformMatrix4fv(location, 1,	GL_FALSE ,glm::value_ptr(matrix));
 	}
+
+	
 }
