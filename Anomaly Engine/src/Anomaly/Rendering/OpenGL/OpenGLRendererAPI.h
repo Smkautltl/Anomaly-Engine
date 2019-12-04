@@ -10,6 +10,6 @@ namespace Anomaly
 		virtual void SetClearColour(const glm::vec4& colour) override;
 		virtual void Clear() override;
 
-		virtual void DrawCall(const std::shared_ptr<VertexArray>& vertexarray) override;
+		virtual void DrawCall(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader) override;
 	};
 }

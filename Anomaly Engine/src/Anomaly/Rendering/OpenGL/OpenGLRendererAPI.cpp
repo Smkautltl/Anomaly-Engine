@@ -2,6 +2,7 @@
 #include "OpenGLRendererAPI.h"
 
 #include <glad/glad.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace Anomaly
 {
@@ -15,11 +16,8 @@ namespace Anomaly
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void OpenGLRendererAPI::DrawCall(const std::shared_ptr<VertexArray>& vertexarray)
+	void OpenGLRendererAPI::DrawCall(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader)
 	{
-		for (auto IB : vertexarray->GetIndexBuffers())
-		{
-			glDrawElements(GL_TRIANGLES, IB->GetCount(), GL_UNSIGNED_INT, nullptr);	
-		}	
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 }

@@ -31,6 +31,7 @@ namespace Anomaly
 	
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
+		glEnable(GL_DEPTH_TEST);
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 	OpenGLVertexArray::~OpenGLVertexArray()
@@ -58,8 +59,7 @@ namespace Anomaly
 		uint32_t i = 0;
 		const auto& layout = vertexbuffer->GetLayout();
 		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(i);
+		{	
 			glVertexAttribPointer(i, 
 								  element.GetComponentCount(), 
 								  ShaderDataType_To_GLenum(element.Type), 
@@ -67,6 +67,7 @@ namespace Anomaly
 								  layout.GetStride(), 
 								  reinterpret_cast<const void*>(element.Offset)
 								 );
+			glEnableVertexAttribArray(i);
 			i++;
 		}
 

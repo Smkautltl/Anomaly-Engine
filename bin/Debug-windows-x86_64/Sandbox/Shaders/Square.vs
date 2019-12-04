@@ -10,5 +10,5 @@ out vec3 v_Position;
 void  main()
 {			
 	v_Position = a_Position;
-	gl_Position = u_ViewProjMatrix * u_Transform * vec4(a_Position, 1.0);
+	gl_Position = u_ViewProjMatrix * vec4(a_Position, 1.0);
 }

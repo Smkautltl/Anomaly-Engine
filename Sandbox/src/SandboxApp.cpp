@@ -1,30 +1,62 @@
 #include <Anomaly.h>
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/string_cast.hpp>
 
 class ExampleLayer : public Anomaly::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-3.2f, 3.2f, -1.8f, 1.8f, -5.f, 5.f)
-	{	
-		float VerticesAndColour[3 * 7] =
-		{
-		//	  X		 Y		Z		 R		 G		 B		 A
-			-0.5f, -0.5f,  0.0f,	1.0f,	0.05f,	0.05f,	1.0f,
-			 0.5f, -0.5f,  0.0f,	0.05f,	1.0f,	0.05f,	1.0f,
-			 0.0f,  0.5f,  0.0f,	0.05f,	0.05f,	1.0f,	1.0f
+		: Layer("Example"), m_Camera(45.f,1280.f, 720.f)
+	{		
+		float Vertices[] = {
+			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 		};
-		uint32_t indices[3] =
-		{
-			0,1,2
-		};
+		
 		//This sets up the layout of the Vertex Buffer
 		Anomaly::BufferLayout layout = 
 		{
 				{Anomaly::ShaderDataType::Vec3, "a_Position"},
-				{Anomaly::ShaderDataType::Vec4, "a_Colour"}
+				{Anomaly::ShaderDataType::Vec2, "a_TexCoords0"}
 		};
 		
 		//Sets up all the buffers and arrays needed for rendering		
@@ -33,54 +65,32 @@ public:
 		std::shared_ptr<Anomaly::VertexBuffer> m_VertexBuffer;
 		std::shared_ptr<Anomaly::IndexBuffer> m_IndexBuffer;
 		
-		m_VertexBuffer.reset(Anomaly::VertexBuffer::Create(VerticesAndColour, sizeof(VerticesAndColour)));
+		m_VertexBuffer.reset(Anomaly::VertexBuffer::Create(Vertices, sizeof(Vertices)));
 		m_VertexBuffer->SetLayout(layout);		
 		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 		
-		m_IndexBuffer.reset(Anomaly::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)) );
-		m_VertexArray->AddIndexBuffer(m_IndexBuffer);
+		//m_IndexBuffer.reset(Anomaly::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)) );
+		//m_VertexArray->AddIndexBuffer(m_IndexBuffer);
 		//-------------------------------------------------------
 
 		m_Shader.reset(new Anomaly::Shader("Triangle.vs", "Triangle.fs"));
-
-//Temporary for testing----------------------------------------------------------------------------
-		{
-			float SquareVertices[3 * 4] =
-			{
-		//	  X		 Y		Z
-			-1.0f, -1.0f,  0.0f,
-			 1.0f, -1.0f,  0.0f,
-			 1.0f,  1.0f,  0.0f,
-			-1.0f,  1.0f,  0.0f,
-		};
-			uint32_t SquareIndices[6] =
-			{
-			0,1,2,
-			2,3,0,
-		};
-			Anomaly::BufferLayout layout2 = 
-			{
-				{Anomaly::ShaderDataType::Vec3, "a_Position"},
-		};
-			
-			m_SquareVertexArray.reset(Anomaly::VertexArray::Create());
-			
-			std::shared_ptr<Anomaly::VertexBuffer> m_SquareVertexBuffer;
-			m_SquareVertexBuffer.reset(Anomaly::VertexBuffer::Create(SquareVertices, sizeof(SquareVertices)));
-			m_SquareVertexBuffer->SetLayout(layout2);
-			m_SquareVertexArray->AddVertexBuffer(m_SquareVertexBuffer);
-			
-			std::shared_ptr<Anomaly::IndexBuffer> m_SquareIndexBuffer;
-			m_SquareIndexBuffer.reset(Anomaly::IndexBuffer::Create(SquareIndices, sizeof(SquareIndices) / sizeof(uint32_t) ));
-			m_SquareVertexArray->AddIndexBuffer(m_SquareIndexBuffer);		
-
-			m_Shader2.reset(new Anomaly::Shader( "Square.vs", "Square.fs"));			
-		}
-//-------------------------------------------------------------------------------------------------
+		m_Shader->GenerateTextures();
+		
 	}
 
 	void OnUpdate(Anomaly::TimeStep deltaTime) override
 	{
+		glm::vec3 cubePositions[] = {
+			glm::vec3( 2.0f,  5.0f, -15.0f),
+			glm::vec3(-1.5f, -2.2f, -2.5f),
+			glm::vec3(-3.8f, -2.0f, -12.3f),
+			glm::vec3( 2.4f, -0.4f, -3.5f),
+			glm::vec3(-1.7f,  3.0f, -7.5f),
+			glm::vec3( 1.3f, -2.0f, -2.5f),
+			glm::vec3( 1.5f,  2.0f, -2.5f),
+			glm::vec3( 1.5f,  0.2f, -1.5f),
+			glm::vec3(-1.3f,  1.0f, -1.5f)
+		};
 		
 		if(Anomaly::Input::IsKeyPressed(AE_KEY_W))
 		{
@@ -113,23 +123,31 @@ public:
 		Anomaly::RenderRequest::Clear();
 
 		m_Camera.SetPosition(m_CamPos);
-		m_Camera.SetRotation(m_CamRot);
-			
+		//m_Camera.SetRotation(m_CamRot);
+
+		m_Camera.RecalcuteProjMatrix(45.f,1280.f, 720.f);
+		m_Camera.RecalcuteViewMatrix();
+		m_Shader->SetUniformMatrix4("u_ViewMatrix",  m_Camera.GetViewMatrix());
+		m_Shader->SetUniformMatrix4("u_ProjMatrix",  m_Camera.GetProjMatrix());
+
 		Anomaly::Renderer::BeginScene(m_Camera);
 		{
-			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+			m_Shader->BindTextures();
+			
+			for (auto i = 0; i < 10; i++)
+			{
+				glm::mat4 modelmatrix = glm::mat4(1.f);
+				modelmatrix = glm::translate(modelmatrix, cubePositions[i]);
+				float angle = 20.f * i;
+				modelmatrix = glm::rotate(modelmatrix, glm::radians(angle), glm::vec3(1.0f,0.3f,0.5f));
+				//modelmatrix = glm::rotate(modelmatrix, ((float)deltaTime.GetMilliSecs() / 2.f) * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+				m_Shader->SetUniformMatrix4("u_ModelMatrix", modelmatrix);
 
-			y += 100;
-			x += 100;
-				
-			glm::vec3 pos = glm::vec3(x * 0.11f, y * 0.11f, 0.0f);
-			glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-			AE_CORE_INFO("{0}", glm::to_string(transform));
-			Anomaly::Renderer::Submission(m_SquareVertexArray, m_Shader2, transform);
-			Anomaly::Renderer::Submission(m_VertexArray, m_Shader);
+				Anomaly::Renderer::Submission(m_VertexArray, m_Shader);
+			}	
+			
 		}
 		Anomaly::Renderer::EndScene();
-
 		//ImGui::GetWindowDrawList()->AddImage();
 	}
 
@@ -149,14 +167,11 @@ private:
 	std::shared_ptr<Anomaly::VertexArray> m_SquareVertexArray;
 	std::shared_ptr<Anomaly::Shader> m_Shader2;
 	
-	Anomaly::OrthoCamera m_Camera;
+	Anomaly::PerspecCamera m_Camera;
 	glm::vec3 m_CamPos = {0.f, 0.f, 0.f};
 	float m_CamRot = 0.f;
 	float m_CameraSpeed = 3.0f;
-
-	glm::vec3 squartransfrom = glm::vec3(0.f);
-	int x = 0;
-	int y = 0;
+		
 };
 
 class Sandbox final : public Anomaly::Application

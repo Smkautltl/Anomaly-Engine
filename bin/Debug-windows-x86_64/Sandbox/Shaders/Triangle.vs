@@ -1,17 +1,19 @@
 #version 450 core
 
 layout(location = 0) in vec3 a_Position;
-layout(location = 1) in vec4 a_Colour;
+layout(location = 1) in vec2 a_TexCoords0;
 
-uniform mat4 u_ViewProjMatrix;
-uniform mat4 u_Transform;
-
-out vec3 v_Position;
 out vec4 v_Colour;
+out vec2 v_TexCoords0;
+
+uniform mat4 u_ViewMatrix;
+uniform mat4 u_ProjMatrix;
+uniform mat4 u_ModelMatrix;
+uniform mat4 u_Transform;
 
 void  main()
 {
-	v_Position = a_Position;
-	v_Colour = a_Colour;
-	gl_Position = u_ViewProjMatrix * u_Transform * vec4(a_Position, 1.0);	
+	v_Colour = vec4(1.0);
+	v_TexCoords0 = a_TexCoords0;
+	gl_Position = u_ProjMatrix * u_ViewMatrix * u_ModelMatrix * vec4(a_Position, 1.0);	
 }
