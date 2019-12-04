@@ -1,10 +1,8 @@
 #pragma once
 
-#include "Anomaly/Layer.h"
+#include "../Core/Layer.h"
 
 #include "Anomaly/Events/KeyEvent.h"
-#include "Anomaly/Events/MouseEvent.h"
-#include "Anomaly/Events/ApplicationEvent.h"
 
 namespace Anomaly
 {

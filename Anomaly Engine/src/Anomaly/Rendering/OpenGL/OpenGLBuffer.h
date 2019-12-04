@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Anomaly/Rendering/Primatives/Buffer.h"
+#include "../Primatives/Buffer.h"
 
 namespace Anomaly
 {

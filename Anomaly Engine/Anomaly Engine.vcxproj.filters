@@ -31,17 +31,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Anomaly.h" />
-    <ClInclude Include="src\Anomaly\Application.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\Core.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
     <ClInclude Include="src\Anomaly\Core\TimeStep.h">
       <Filter>Anomaly\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\EntryPoint.h">
-      <Filter>Anomaly</Filter>
     </ClInclude>
     <ClInclude Include="src\Anomaly\Events\ApplicationEvent.h">
       <Filter>Anomaly\Events</Filter>
@@ -54,21 +45,6 @@
     </ClInclude>
     <ClInclude Include="src\Anomaly\Events\MouseEvent.h">
       <Filter>Anomaly\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\KeyCodes.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\Layer.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\LayerStack.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\Log.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\MouseButtonCodes.h">
-      <Filter>Anomaly</Filter>
     </ClInclude>
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.h">
       <Filter>Anomaly\Rendering\OpenGL</Filter>
@@ -106,14 +82,8 @@
     <ClInclude Include="src\Anomaly\Rendering\RenderingContext.h">
       <Filter>Anomaly\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\Anomaly\Window.h">
-      <Filter>Anomaly</Filter>
-    </ClInclude>
     <ClInclude Include="src\Anomaly\imgui\ImGuiLayer.h">
       <Filter>Anomaly\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Anomaly\input.h">
-      <Filter>Anomaly</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>Platform\Windows</Filter>
@@ -122,20 +92,39 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\aepch.h" />
+    <ClInclude Include="src\Anomaly\Rendering\stb_image.h" />
+    <ClInclude Include="src\Anomaly\Core\Window.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\Application.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\Core.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\EntryPoint.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\input.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\KeyCodes.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\Layer.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\LayerStack.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\Log.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Anomaly\Core\MouseButtonCodes.h">
+      <Filter>Anomaly</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Anomaly\Application.cpp">
-      <Filter>Anomaly</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Anomaly\Layer.cpp">
-      <Filter>Anomaly</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Anomaly\LayerStack.cpp">
-      <Filter>Anomaly</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Anomaly\Log.cpp">
-      <Filter>Anomaly</Filter>
-    </ClCompile>
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp">
       <Filter>Anomaly\Rendering\OpenGL</Filter>
     </ClCompile>
@@ -182,5 +171,18 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\aepch.cpp" />
+    <ClCompile Include="src\Anomaly\Core\Application.cpp">
+      <Filter>Anomaly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Core\Layer.cpp">
+      <Filter>Anomaly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Core\LayerStack.cpp">
+      <Filter>Anomaly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Core\Log.cpp">
+      <Filter>Anomaly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anomaly\Rendering\stb_image.cpp" />
   </ItemGroup>
 </Project>

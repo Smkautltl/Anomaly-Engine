@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Anomaly/input.h"
+#include "Anomaly/Core/input.h"
 
 namespace Anomaly
 {

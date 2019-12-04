@@ -1,8 +1,4 @@
 ﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
-  Application.cpp
-  Buffer.cpp
-  Shader.cpp
-  VertexArray.cpp
-  Renderer.cpp
-  Generating Code...
+  OpenGLVertexArray.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.cpp(68,55): warning C4312: 'reinterpret_cast': conversion from 'const uint32_t' to 'const void *' of greater size
   Anomaly Engine.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\..\bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.lib

@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "Primatives/VertexArray.h"
+#include "Primatives/Shader.h"
 
 namespace Anomaly
 {
@@ -18,7 +19,7 @@ namespace Anomaly
 		virtual void SetClearColour(const glm::vec4& colour) = 0;
 		virtual void Clear() = 0;
 
-		virtual void DrawCall(const std::shared_ptr<VertexArray>& vertexarray) = 0;
+		virtual void DrawCall(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader) = 0;
 
 		inline static API GetAPI() { return s_API; };
 		

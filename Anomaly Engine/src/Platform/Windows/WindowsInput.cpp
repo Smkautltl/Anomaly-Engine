@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-#include "Anomaly/Application.h"
+#include "Anomaly/Core/Application.h"
 
 namespace Anomaly
 {

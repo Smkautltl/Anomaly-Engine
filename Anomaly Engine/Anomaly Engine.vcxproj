@@ -144,19 +144,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Anomaly.h" />
-    <ClInclude Include="src\Anomaly\Application.h" />
-    <ClInclude Include="src\Anomaly\Core.h" />
+    <ClInclude Include="src\Anomaly\Core\Application.h" />
+    <ClInclude Include="src\Anomaly\Core\Core.h" />
     <ClInclude Include="src\Anomaly\Core\TimeStep.h" />
-    <ClInclude Include="src\Anomaly\EntryPoint.h" />
+    <ClInclude Include="src\Anomaly\Core\EntryPoint.h" />
     <ClInclude Include="src\Anomaly\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Anomaly\Events\Event.h" />
     <ClInclude Include="src\Anomaly\Events\KeyEvent.h" />
     <ClInclude Include="src\Anomaly\Events\MouseEvent.h" />
-    <ClInclude Include="src\Anomaly\KeyCodes.h" />
-    <ClInclude Include="src\Anomaly\Layer.h" />
-    <ClInclude Include="src\Anomaly\LayerStack.h" />
-    <ClInclude Include="src\Anomaly\Log.h" />
-    <ClInclude Include="src\Anomaly\MouseButtonCodes.h" />
+    <ClInclude Include="src\Anomaly\Core\KeyCodes.h" />
+    <ClInclude Include="src\Anomaly\Core\Layer.h" />
+    <ClInclude Include="src\Anomaly\Core\LayerStack.h" />
+    <ClInclude Include="src\Anomaly\Core\Log.h" />
+    <ClInclude Include="src\Anomaly\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.h" />
@@ -169,18 +169,19 @@
     <ClInclude Include="src\Anomaly\Rendering\Renderer.h" />
     <ClInclude Include="src\Anomaly\Rendering\RendererAPI.h" />
     <ClInclude Include="src\Anomaly\Rendering\RenderingContext.h" />
-    <ClInclude Include="src\Anomaly\Window.h" />
+    <ClInclude Include="src\Anomaly\Rendering\stb_image.h" />
+    <ClInclude Include="src\Anomaly\Core\Window.h" />
     <ClInclude Include="src\Anomaly\imgui\ImGuiLayer.h" />
-    <ClInclude Include="src\Anomaly\input.h" />
+    <ClInclude Include="src\Anomaly\Core\input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\aepch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Anomaly\Application.cpp" />
-    <ClCompile Include="src\Anomaly\Layer.cpp" />
-    <ClCompile Include="src\Anomaly\LayerStack.cpp" />
-    <ClCompile Include="src\Anomaly\Log.cpp" />
+    <ClCompile Include="src\Anomaly\Core\Application.cpp" />
+    <ClCompile Include="src\Anomaly\Core\Layer.cpp" />
+    <ClCompile Include="src\Anomaly\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Anomaly\Core\Log.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="src\Anomaly\Rendering\RendererAPI.cpp" />
     <ClCompile Include="src\Anomaly\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Anomaly\imgui\imguiBuild.cpp" />
+    <ClCompile Include="src\Anomaly\Rendering\stb_image.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\aepch.cpp">

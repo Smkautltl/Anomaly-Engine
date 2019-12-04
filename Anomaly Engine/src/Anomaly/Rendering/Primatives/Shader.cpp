@@ -1,9 +1,10 @@
 #include "aepch.h"
 #include "Shader.h"
 
-#include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
+#include <Anomaly/Rendering/stb_image.h>
 
+#include <glad/glad.h>
 
 namespace Anomaly
 {
@@ -46,7 +47,6 @@ namespace Anomaly
 	
 	Shader::Shader(const char* VertexSrcFileName,const char* FragmentSrcFileName)
 	{
-
 		ReadInShaders(VertexSrcFileName, FragmentSrcFileName);
 		
 		// Create an empty vertex shader handle
@@ -170,11 +170,63 @@ namespace Anomaly
 		glUseProgram(0);
 	}
 
-	void Shader::AddUniformMatrix4(const std::string& name, const glm::mat4& matrix)
+	void Shader::GenerateTextures()
+	{
+		//Generates and binds 1st texture
+		std::string AppPath = __argv[0];	
+		AppPath.replace(AppPath.end() - 11, AppPath.end(), "Textures\\container.jpg");
+		const char* tPath = AppPath.c_str();
+
+		glGenTextures(1, &texture0);
+		glBindTexture(GL_TEXTURE_2D, texture0);
+
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		int width, height, nrchannels;
+		stbi_set_flip_vertically_on_load(true); 
+		unsigned char *data = stbi_load(tPath, &width, &height, &nrchannels, 0);
+
+		if(data)
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
+		}
+		else
+		{
+			AE_CORE_ERROR("Texture failed to load!");
+		}	
+		stbi_image_free(data);
+
+		//TODO: Setup the ability for multiple textures to be used in one shader
+	}
+	void Shader::BindTextures()
+	{		
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture0);
+		SetUniformInt("u_Texture0", 0);
+	}
+
+	void Shader::SetUniformMatrix4(const std::string& name, const glm::mat4& matrix)
 	{	
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniformMatrix4fv(location, 1,	GL_FALSE ,glm::value_ptr(matrix));
 	}
-
-	
+	void Shader::SetUniformBool(const std::string& name, bool value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1i(location, value);
+	}
+	void Shader::SetUniformInt(const std::string& name, int value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1i(location, value);
+	}
+	void Shader::SetUniformFloat(const std::string& name, float value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1f(location, value);
+	}
 }

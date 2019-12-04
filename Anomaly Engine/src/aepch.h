@@ -14,7 +14,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Anomaly/Log.h"
+#include "Anomaly/Core/Log.h"
 
 #ifdef AE_PLATFORM_WINDOWS
 #include <Windows.h>

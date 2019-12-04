@@ -1,14 +1,14 @@
 #pragma once
 //For use by anomaly applications
-#include "Anomaly/Application.h"
-#include "Anomaly/Layer.h"
-#include "Anomaly/Log.h"
+#include "Anomaly/Core/Application.h"
+#include "Anomaly/Core/Layer.h"
+#include "Anomaly/Core/Log.h"
 
 #include "Anomaly/Core/TimeStep.h"
 
-#include "Anomaly/input.h"
-#include "Anomaly/KeyCodes.h"
-#include "Anomaly/MouseButtonCodes.h"
+#include "Anomaly/Core/input.h"
+#include "Anomaly/Core/KeyCodes.h"
+#include "Anomaly/Core/MouseButtonCodes.h"
 
 #include "Anomaly/imgui/ImGuiLayer.h"
 
@@ -23,5 +23,5 @@
 //-------------------------------------------
 
 //---Entry point--------------------
-#include "Anomaly/EntryPoint.h"
+#include "Anomaly/Core/EntryPoint.h"
 //----------------------------------

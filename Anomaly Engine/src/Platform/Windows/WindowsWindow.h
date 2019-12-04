@@ -1,5 +1,5 @@
 #pragma once
-#include "Anomaly/Window.h"
+#include "Anomaly/Core/Window.h"
 #include "Anomaly/Rendering/RenderingContext.h"
 #include <GLFW/glfw3.h>
 

@@ -9,12 +9,16 @@ namespace Anomaly
 	class Renderer
 	{
 	public:
-		static void BeginScene(OrthoCamera& camera);
+		static void BeginScene(PerspecCamera& camera);
 		static void EndScene();
 
-		static void Submission(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform = glm::mat4(1.0f));		
+		static void SetUniform(const std::shared_ptr<Shader>& shader, const std::string& name, float& value)			{ shader->SetUniformFloat(name, value); }
+		static void SetUniform(const std::shared_ptr<Shader>& shader, const std::string& name, bool& value)				{ shader->SetUniformBool(name, value); }
+		static void SetUniform(const std::shared_ptr<Shader>& shader, const std::string& name, const glm::mat4& value)	{ shader->SetUniformMatrix4(name, value); }
 		
-		inline static RendererAPI::API GetRendererAPI() {return RendererAPI::GetAPI();}
+		static void Submission(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader);		
+		
+		inline static RendererAPI::API GetRendererAPI() { return RendererAPI::GetAPI(); }
 
 	private:
 		struct SceneData
