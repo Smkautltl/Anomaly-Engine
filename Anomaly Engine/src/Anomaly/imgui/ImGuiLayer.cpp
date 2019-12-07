@@ -75,7 +75,7 @@ namespace Anomaly
 	void ImGuiLayer::OnImGuiRender()
 	{
 		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		//ImGui::ShowDemoWindow(&show);
 	}
 
 	void ImGuiLayer::End()

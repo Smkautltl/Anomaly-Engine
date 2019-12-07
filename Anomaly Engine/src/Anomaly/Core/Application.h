@@ -25,13 +25,15 @@ namespace Anomaly
 
 		static Application& Get() { return *s_Instance; }
 		Window& GetWindow() const { return *m_Window; }
+
+		static inline bool m_Running = true;
 		
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
-		bool m_Running = true;
+		
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.f;
 	

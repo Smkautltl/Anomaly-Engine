@@ -8,7 +8,7 @@ namespace Anomaly
 	
 	void Renderer::BeginScene(PerspecCamera& camera)
 	{
-		m_SceneData->ViewProjMatrix = camera.GetViewProjMatrix();
+		//m_SceneData->ViewProjMatrix = camera.GetViewProjMatrix();
 	}
 
 	void Renderer::EndScene()
@@ -19,7 +19,7 @@ namespace Anomaly
 	{
 		shader->Bind();
 		shader->BindTextures();
-		shader->SetUniformMatrix4("u_ViewProjMatrix", m_SceneData->ViewProjMatrix);
+		//shader->SetUniformMatrix4("u_ViewProjMatrix", m_SceneData->ViewProjMatrix);
 		
 		vertexarray->Bind();
 		RenderRequest::DrawCall(vertexarray, shader);

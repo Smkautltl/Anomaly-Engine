@@ -9,7 +9,6 @@ out vec2 v_TexCoords0;
 uniform mat4 u_ViewMatrix;
 uniform mat4 u_ProjMatrix;
 uniform mat4 u_ModelMatrix;
-uniform mat4 u_Transform;
 
 void  main()
 {
