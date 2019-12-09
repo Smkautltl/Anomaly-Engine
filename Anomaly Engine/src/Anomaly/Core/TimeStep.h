@@ -15,8 +15,10 @@ namespace Anomaly
 		float GetSecs() const { return m_Time; };
 		float GetMilliSecs() const { return m_Time * 1000.f; }
 		
-		
+		void SetglfwTime(const float glfwTime) { m_glfwTime = glfwTime; }
+		const float GetglfwTime() { return m_glfwTime; }		
 	private:
 		float m_Time;
+		float m_glfwTime;
 	};
 }

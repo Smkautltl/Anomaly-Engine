@@ -44,8 +44,10 @@ namespace Anomaly
 		const void SetViewMatrix(const glm::mat4& matrix) { m_ViewMatrix= matrix; }
 		const void SetModelMatrix(const glm::mat4& matrix){ m_ModelMatrix= matrix; }
 
-		const glm::vec3& GetCameraFront() const { return m_CamFront; };
-		const glm::vec3& GetCameraUp() const { return m_CamUp; };
+		const glm::vec3& GetCameraFront() const { return m_CamFront; }
+		const glm::vec3& GetCameraUp() const { return m_CamUp; }
+		const glm::vec3& GetCameraPos() const { return m_CamPos; }
+		
 
 		void RecalcuteViewMatrix();
 		void RecalcuteProjMatrix(float FOV, float width, float height, float nearValue = 0.1f, float farValue = 100.0f);

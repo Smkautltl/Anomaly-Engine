@@ -23,6 +23,7 @@ namespace Anomaly
 		void SetUniformBool(const std::string& name, bool value);
 		void SetUniformInt(const std::string& name, int value);
 		void SetUniformFloat(const std::string& name, float value);
+		void SetUniformVec3(const std::string& name, glm::vec3 value);
 
 	private:
 		void ReadInShaders(const char* VertexSrcFileName,const char* FragmentSrcFileName);
@@ -32,5 +33,6 @@ namespace Anomaly
 		std::string VertexSrc;
 		std::string FragmentSrc;
 		unsigned int texture0;
+		unsigned int texture1;
 	};
 }

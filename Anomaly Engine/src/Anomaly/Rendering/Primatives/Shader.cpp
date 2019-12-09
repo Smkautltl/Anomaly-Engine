@@ -172,41 +172,77 @@ namespace Anomaly
 
 	void Shader::GenerateTextures()
 	{
-		//Generates and binds 1st texture
-		std::string AppPath = __argv[0];	
-		AppPath.replace(AppPath.end() - 11, AppPath.end(), "Textures\\container.jpg");
-		const char* tPath = AppPath.c_str();
-
-		glGenTextures(1, &texture0);
-		glBindTexture(GL_TEXTURE_2D, texture0);
-
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		int width, height, nrchannels;
-		stbi_set_flip_vertically_on_load(true); 
-		unsigned char *data = stbi_load(tPath, &width, &height, &nrchannels, 0);
-
-		if(data)
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-			glGenerateMipmap(GL_TEXTURE_2D);
+			//Generates and binds 1st texture
+			std::string AppPath = __argv[0];	
+			AppPath.replace(AppPath.end() - 11, AppPath.end(), "Textures\\container2.png");
+			const char* tPath = AppPath.c_str();
+
+			glGenTextures(1, &texture0);
+			glBindTexture(GL_TEXTURE_2D, texture0);
+
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			int width, height, nrchannels;
+			stbi_set_flip_vertically_on_load(true); 
+			unsigned char *data = stbi_load(tPath, &width, &height, &nrchannels, 0);
+
+			if(data)
+			{
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
+			else
+			{
+				AE_CORE_ERROR("Texture failed to load!");
+			}	
+			stbi_image_free(data);
 		}
-		else
-		{
-			AE_CORE_ERROR("Texture failed to load!");
-		}	
-		stbi_image_free(data);
 
+		{
+			//Generates and binds 2nd texture
+			std::string AppPath = __argv[0];	
+			AppPath.replace(AppPath.end() - 11, AppPath.end(), "Textures\\container2_specular.png");
+			const char* tPath = AppPath.c_str();
+
+			glGenTextures(1, &texture1);
+			glBindTexture(GL_TEXTURE_2D, texture1);
+
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			int width, height, nrchannels;
+			stbi_set_flip_vertically_on_load(true); 
+			unsigned char *data = stbi_load(tPath, &width, &height, &nrchannels, 0);
+
+			if(data)
+			{
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
+			else
+			{
+				AE_CORE_ERROR("Texture failed to load!");
+			}	
+			stbi_image_free(data);
+		}
 		//TODO: Setup the ability for multiple textures to be used in one shader
 	}
 	void Shader::BindTextures()
-	{		
+	{
+		SetUniformInt("m_material.diffuse",  0);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture0);
-		SetUniformInt("u_Texture0", 0);
+
+		SetUniformInt("m_material.specular",  1);
+		SetUniformInt("m_material.emission",  1);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture1);
 	}
 
 	void Shader::SetUniformMatrix4(const std::string& name, const glm::mat4& matrix)
@@ -228,5 +264,10 @@ namespace Anomaly
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1f(location, value);
+	}
+	void Shader::SetUniformVec3(const std::string& name, glm::vec3 value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform3f(location, value.r, value.g, value.b);
 	}
 }

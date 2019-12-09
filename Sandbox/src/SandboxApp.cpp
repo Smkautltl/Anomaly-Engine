@@ -14,92 +14,75 @@ public:
 
 		//Cubes Objects----------------------------------------------------------------------------------
 		float Vertices[] = {
-			-0.5f, -0.5f, -0.5f,	0.0f, 0.0f,
-			 0.5f, -0.5f, -0.5f,	1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,	1.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,	1.0f, 1.0f,
-			-0.5f,  0.5f, -0.5f,	0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,	0.0f, 0.0f,
-
-			-0.5f, -0.5f,  0.5f,	0.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,	1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,	1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,	1.0f, 1.0f,
-			-0.5f,  0.5f,  0.5f,	0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,	0.0f, 0.0f,
-
-			-0.5f,  0.5f,  0.5f,	1.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,	1.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,	0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,	0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,	0.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,	1.0f, 0.0f,
-
-			 0.5f,  0.5f,  0.5f,	1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,	1.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,	0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,	0.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,	0.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,	1.0f, 0.0f,
-
-			-0.5f, -0.5f, -0.5f,	0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,	1.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,	1.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,	1.0f, 0.0f,
-			-0.5f, -0.5f,  0.5f,	0.0f, 0.0f,
-			-0.5f, -0.5f, -0.5f,	0.0f, 1.0f,
-
-			-0.5f,  0.5f, -0.5f,	0.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,	1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,	1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,	1.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,	0.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,	0.0f, 1.0f
+			// positions           // normals            // texture coords
+			-0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,   0.0f, 0.0f,
+			 0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,   1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,   1.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,   1.0f, 1.0f,
+			-0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,   0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,   0.0f, 0.0f,
+								   						 
+			-0.5f, -0.5f,  0.5f,   0.0f,  0.0f, 1.0f,    0.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,   0.0f,  0.0f, 1.0f,    1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,   0.0f,  0.0f, 1.0f,    1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,   0.0f,  0.0f, 1.0f,    1.0f, 1.0f,
+			-0.5f,  0.5f,  0.5f,   0.0f,  0.0f, 1.0f,    0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f,   0.0f,  0.0f, 1.0f,    0.0f, 0.0f,
+								   						 
+			-0.5f,  0.5f,  0.5f, - 1.0f,  0.0f,  0.0f,   1.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f, - 1.0f,  0.0f,  0.0f,   1.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f, - 1.0f,  0.0f,  0.0f,   0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f, - 1.0f,  0.0f,  0.0f,   0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f, - 1.0f,  0.0f,  0.0f,   0.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f, - 1.0f,  0.0f,  0.0f,   1.0f, 0.0f,
+								   						 
+			 0.5f,  0.5f,  0.5f,   1.0f,  0.0f,  0.0f,   1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,   1.0f,  0.0f,  0.0f,   1.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,   1.0f,  0.0f,  0.0f,   0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,   1.0f,  0.0f,  0.0f,   0.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,   1.0f,  0.0f,  0.0f,   0.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,   1.0f,  0.0f,  0.0f,   1.0f, 0.0f,
+								   						 
+			-0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,   0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,   1.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,   1.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,   1.0f, 0.0f,
+			-0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,   0.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,   0.0f, 1.0f,
+								   						 
+			-0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,   0.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,   1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,   1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,   1.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,   0.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,   0.0f, 1.0f
 
 		};	
 		//This sets up the layout of the Vertex Buffer
 		Anomaly::BufferLayout layout = 
 		{
 				{Anomaly::ShaderDataType::Vec3, "a_Position"},
-				{Anomaly::ShaderDataType::Vec2, "a_TexCoords0"}
+				{Anomaly::ShaderDataType::Vec3, "a_Normal"},
+				{Anomaly::ShaderDataType::Vec2, "a_TexCoords"}
 		};
 		
 		//Sets up all the buffers and arrays needed for rendering		
 		m_VertexArray.reset(Anomaly::VertexArray::Create());
 
-		std::shared_ptr<Anomaly::VertexBuffer> m_VertexBuffer;
-		
+		std::shared_ptr<Anomaly::VertexBuffer> m_VertexBuffer;		
 		m_VertexBuffer.reset(Anomaly::VertexBuffer::Create(Vertices, sizeof(Vertices)));
 		m_VertexBuffer->SetLayout(layout);		
 		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-		m_Shader.reset(new Anomaly::Shader("Triangle.vs", "Triangle.fs"));
+		
+		m_Shader.reset(new Anomaly::Shader("Light.vs", "Light.fs"));
 		m_Shader->GenerateTextures();
 		//-----------------------------------------------------------------------------------------------
 
-		//Light Object-----------------------------------------------------------------------------------
-		float LightVertices[] = {
-			-0.5f, -0.5f, -0.5f,	
-			 0.5f, -0.5f, -0.5f,	
-			 0.5f,  0.5f, -0.5f,	
-			 0.5f,  0.5f, -0.5f,	
-			-0.5f,  0.5f, -0.5f,	
-			-0.5f, -0.5f, -0.5f	
-		};
-		
-		Anomaly::BufferLayout LightLayout =
-		{
-			{Anomaly::ShaderDataType::Vec3, "a_Position"}
-		};
-
-		m_LightVertexArray.reset(Anomaly::VertexArray::Create());
-		std::shared_ptr<Anomaly::VertexBuffer> m_LightVertexBuffer;
-
-		m_LightVertexBuffer.reset(Anomaly::VertexBuffer::Create(LightVertices, sizeof(LightVertices)));
-		m_LightVertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(m_LightVertexBuffer);
-		m_LightShader.reset(new Anomaly::Shader("Light.vs", "Light.fs"));
-
-		m_LightShader
+		//Light Object--------------------------------------------------------------------------------------------
+		m_LightVertexArray.reset(Anomaly::VertexArray::Create());	
+		m_LightVertexArray->AddVertexBuffer(m_VertexBuffer);
+		m_LightShader.reset(new Anomaly::Shader("LightCube.vs", "LightCube.fs"));
+		//---------------------------------------------------------------------------------------------------------
 		
 		m_CamPos =	{0.f, 0.f, 3.0f};
 		
@@ -171,23 +154,55 @@ public:
 		m_Camera.SetPosition(m_CamPos);
 
 		m_Camera.RecalcuteProjMatrix(45.f,1280.f, 720.f);
-		m_Shader->SetUniformMatrix4("u_ViewMatrix",  m_Camera.GetViewMatrix());
-		m_Shader->SetUniformMatrix4("u_ProjMatrix",  m_Camera.GetProjMatrix());
+		
+		glm::vec3 lightpos(1.2f, 1.0f, 2.0f);
 
 		Anomaly::Renderer::BeginScene(m_Camera);
 		{
+			m_Shader->Bind();
+			m_Shader->SetUniformMatrix4("u_ViewMatrix",  m_Camera.GetViewMatrix());
+			m_Shader->SetUniformMatrix4("u_ProjMatrix",  m_Camera.GetProjMatrix());
+
+			//Object inputs
+			m_Shader->SetUniformVec3("v_ObjectColour", glm::vec3(1.0f,0.0f,0.31f));
+			m_Shader->SetUniformVec3("v_LightColour",  glm::vec3(1.0f, 1.0f, 1.0f));	
+			m_Shader->SetUniformVec3("v_LightPos",  lightpos);	
+			m_Shader->SetUniformVec3("v_CamPos",  m_Camera.GetCameraPos());
+			m_Shader->SetUniformFloat("time", deltaTime.GetglfwTime());
+
+			//Material Settings
+			m_Shader->SetUniformVec3("m_material.ambient",  glm::vec3(0.174f, 0.011f, 0.011f));
+			m_Shader->SetUniformVec3("m_material.specular", glm::vec3(0.727f, 0.626f, 0.626f));
+			m_Shader->SetUniformFloat("m_material.shininess", 6.0f);
+
+			//Light Settings
+			m_Shader->SetUniformVec3("l_Light.ambient", glm::vec3(0.2f, 0.2f, 0.2f));
+			m_Shader->SetUniformVec3("l_Light.diffuse", glm::vec3(0.5f, 0.5f, 0.5f));
+			m_Shader->SetUniformVec3("l_Light.specular",glm::vec3(1.0f, 1.0f, 1.0f));
+
 			m_Shader->BindTextures();
 			
 			for (auto i = 0; i < 10; i++)
 			{
 				m_Camera.SetModelMatrix(glm::mat4(1.f));
 				m_Camera.SetModelMatrix(glm::translate(m_Camera.GetModelMatrix(), cubePositions[i]));
-				float angle = 20.f * i;
+				float angle = 25.f * i;
 				m_Camera.SetModelMatrix(glm::rotate(m_Camera.GetModelMatrix(), glm::radians(angle), glm::vec3(1.0f,0.3f,0.5f)));
 				m_Shader->SetUniformMatrix4("u_ModelMatrix", m_Camera.GetModelMatrix());
 
 				Anomaly::Renderer::Submission(m_VertexArray, m_Shader);
-			}	
+			}
+
+			m_LightShader->Bind();
+			m_LightShader->SetUniformMatrix4("u_ViewMatrix",  m_Camera.GetViewMatrix());
+			m_LightShader->SetUniformMatrix4("u_ProjMatrix",  m_Camera.GetProjMatrix());
+			
+			m_Camera.SetModelMatrix(glm::mat4(1.f));
+			m_Camera.SetModelMatrix(glm::translate(m_Camera.GetModelMatrix(), lightpos));
+			m_Camera.SetModelMatrix(glm::scale(m_Camera.GetModelMatrix(), glm::vec3(1.f)));
+			m_LightShader->SetUniformMatrix4("u_ModelMatrix", m_Camera.GetModelMatrix());
+			
+			Anomaly::Renderer::Submission(m_LightVertexArray, m_LightShader);
 			
 		}
 		Anomaly::Renderer::EndScene();

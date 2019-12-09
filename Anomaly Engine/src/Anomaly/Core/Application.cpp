@@ -61,6 +61,7 @@ namespace Anomaly
 			float time = static_cast<float>(glfwGetTime());
 			TimeStep DeltaTime = time - m_LastFrameTime;
 			m_LastFrameTime = time;
+			DeltaTime.SetglfwTime(time);
 			
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(DeltaTime);
