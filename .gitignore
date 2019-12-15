@@ -33,3 +33,5 @@
 *.app
 
 *.html
+
+"Anomaly Engine\vendor\assimp"
