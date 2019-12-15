@@ -1,3 +1,45 @@
 ﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
+  aepch.cpp
+cl : command line warning D9025: overriding '/MTd' with '/MDd'
+  Application.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Layer.cpp
+  LayerStack.cpp
+  Log.cpp
+  OpenGLBuffer.cpp
+  OpenGLContext.cpp
+  OpenGLRendererAPI.cpp
+  OpenGLVertexArray.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.cpp(68,55): warning C4312: 'reinterpret_cast': conversion from 'const uint32_t' to 'const void *' of greater size
+  Buffer.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Camera.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Mesh.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Mesh.cpp(30,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Mesh.cpp(42,96): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Mesh.cpp(51,74): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
+  Model.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(36,21): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(43,21): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(56,21): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(90,22): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(93,23): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(116,21): warning C4018: '<': signed/unsigned mismatch
   Shader.cpp
+  VertexArray.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  RenderRequest.cpp
+  Renderer.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  RendererAPI.cpp
+  stb_image.cpp
+  ImGuiLayer.cpp
+  imguiBuild.cpp
+  Generating Code...
+  Compiling...
+  WindowsInput.cpp
+  WindowsWindow.cpp
+  Generating Code...
   Anomaly Engine.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\..\bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.lib

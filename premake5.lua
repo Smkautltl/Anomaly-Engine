@@ -13,6 +13,7 @@ workspace "Anomaly Engine"
  -- Include directories relative to root folder (sln DIR)
  IncludeDir = {}
  IncludeDir["GLFW"] = "Anomaly Engine/vendor/GLFW/include"
+ IncludeDir["GLAD"] = "Anomaly Engine/vendor/assimp/include"
  IncludeDir["GLAD"] = "Anomaly Engine/vendor/GLAD/include"
  IncludeDir["ImGui"] = "Anomaly Engine/vendor/imgui"
  IncludeDir["glm"] = "Anomaly Engine/vendor/glm"
