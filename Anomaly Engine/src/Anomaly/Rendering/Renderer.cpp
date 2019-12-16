@@ -18,7 +18,7 @@ namespace Anomaly
 	void Renderer::Submission(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader)
 	{
 		shader->Bind();
-		shader->BindTextures();
+		shader->BindTextures(0);
 		//shader->SetUniformMatrix4("u_ViewProjMatrix", m_SceneData->ViewProjMatrix);
 		
 		vertexarray->Bind();

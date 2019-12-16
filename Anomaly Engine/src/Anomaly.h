@@ -20,6 +20,8 @@
 #include "Anomaly/Rendering/Primatives/Buffer.h"
 #include "Anomaly/Rendering/Primatives/Camera.h"
 #include "Anomaly/Rendering/Primatives/Shader.h"
+
+#include "Anomaly/Rendering/Primatives/Model.h"
 //-------------------------------------------
 
 //---Entry point--------------------

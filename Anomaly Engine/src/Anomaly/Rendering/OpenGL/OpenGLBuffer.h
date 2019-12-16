@@ -1,12 +1,16 @@
 #pragma once
 
+#include <glm/vec3.hpp>
 #include "../Primatives/Buffer.h"
 
 namespace Anomaly
 {
+	struct Vertex;
+
 	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
+		OpenGLVertexBuffer(Vertex vertices[], uint32_t size);
 		OpenGLVertexBuffer(float* vertices, uint32_t size);
 		virtual ~OpenGLVertexBuffer();
 		

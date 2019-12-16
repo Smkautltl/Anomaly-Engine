@@ -1,7 +1,10 @@
 #pragma once
+#include <glm/vec3.hpp>
 
 namespace Anomaly
 {
+	struct Vertex;
+
 	enum class ShaderDataType : uint8_t
 	{
 		None = 0,
@@ -132,6 +135,7 @@ namespace Anomaly
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
 
+		static VertexBuffer* Create(Vertex vertices[], uint32_t size);
 		static VertexBuffer* Create(float* vertices, uint32_t size);
 
 		virtual void SetLayout(const BufferLayout& layout) = 0;

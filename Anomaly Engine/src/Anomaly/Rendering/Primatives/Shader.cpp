@@ -233,18 +233,15 @@ namespace Anomaly
 		}
 		//TODO: Setup the ability for multiple textures to be used in one shader
 	}
-	void Shader::BindTextures()
+	void Shader::BindTextures(unsigned int id)
 	{
-		SetUniformInt("m_material.diffuse",  0);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture0);
-
-		SetUniformInt("m_material.specular",  1);
-		SetUniformInt("m_material.emission",  1);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, texture1);
+		glBindTexture(GL_TEXTURE_2D, id);
 	}
-
+	void Shader::SetActiveTexture(int num)
+	{
+		glActiveTexture(GL_TEXTURE0 + num);
+	}
+	
 	void Shader::SetUniformMatrix4(const std::string& name, const glm::mat4& matrix)
 	{	
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
@@ -270,4 +267,5 @@ namespace Anomaly
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform3f(location, value.r, value.g, value.b);
 	}
+
 }

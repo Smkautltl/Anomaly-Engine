@@ -17,7 +17,7 @@ namespace Anomaly
 		void UnBind() const;
 
 		void GenerateTextures();
-		void BindTextures();
+		void BindTextures(unsigned int id);
 		
 		void SetUniformMatrix4(const std::string& name, const glm::mat4& matrix);
 		void SetUniformBool(const std::string& name, bool value);
@@ -25,6 +25,7 @@ namespace Anomaly
 		void SetUniformFloat(const std::string& name, float value);
 		void SetUniformVec3(const std::string& name, glm::vec3 value);
 
+		void SetActiveTexture(int num);
 	private:
 		void ReadInShaders(const char* VertexSrcFileName,const char* FragmentSrcFileName);
 		
