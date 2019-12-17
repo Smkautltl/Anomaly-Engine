@@ -14,6 +14,8 @@ namespace Anomaly
 	{
 		unsigned int diffuseN = 1;
 		unsigned int specularN = 1;
+		unsigned int normalN = 1;
+		unsigned int heightN = 1;
 
 		for(auto i = 0; i < m_Textures.size(); i++)
 		{
@@ -26,13 +28,19 @@ namespace Anomaly
 				num = std::to_string(diffuseN++);
 			else if(name == "texture_specular")
 				num = std::to_string(specularN++);
+			else if(name == "texture_normal")
+				num = std::to_string(normalN++);
+			else if(name == "texture_height")
+				num = std::to_string(heightN++);
 
-			shader->SetUniformFloat(("material." + name+ num).c_str(), i);
+			shader->SetUniformInt(name + num, i);
 			shader->BindTextures(m_Textures[i].id);
 		}
-		shader->SetActiveTexture(0);
-
+		
+		m_VertexArray->Bind();
 		Renderer::Submission(m_VertexArray, shader);
+		m_VertexArray->UnBind();
+		shader->SetActiveTexture(0);
 	}
 
 	void Mesh::setupMesh()
@@ -44,13 +52,15 @@ namespace Anomaly
 		{
 			{Anomaly::ShaderDataType::Vec3, "a_Position"},
 			{Anomaly::ShaderDataType::Vec3, "a_Normal"},
-			{Anomaly::ShaderDataType::Vec2, "a_TexCoords"}
+			{Anomaly::ShaderDataType::Vec2, "a_TexCoords"},
+			{Anomaly::ShaderDataType::Vec3, "a_Tangent"},
+			{Anomaly::ShaderDataType::Vec3, "a_BiTangent"}
 		};
 		m_VertexBuffer->SetLayout(layout);
 		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 		m_IndexBuffer.reset(IndexBuffer::Create(&m_Indices[0], m_Indices.size()));
 		m_VertexArray->AddIndexBuffer(m_IndexBuffer);
 
-		m_VertexArray->Bind();
+		m_VertexArray->UnBind();
 	}
 }

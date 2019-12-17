@@ -17,11 +17,11 @@ namespace Anomaly
 
 	void Renderer::Submission(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader)
 	{
-		shader->Bind();
-		shader->BindTextures(0);
-		//shader->SetUniformMatrix4("u_ViewProjMatrix", m_SceneData->ViewProjMatrix);
-		
-		vertexarray->Bind();
 		RenderRequest::DrawCall(vertexarray, shader);
+	}
+
+	void Renderer::Submission(Model& model, const std::shared_ptr<Shader>& shader)
+	{	
+		model.Draw(shader);
 	}
 }

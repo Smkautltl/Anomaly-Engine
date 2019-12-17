@@ -1,45 +1,7 @@
 ﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
-  aepch.cpp
-cl : command line warning D9025: overriding '/MTd' with '/MDd'
-  Application.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Layer.cpp
-  LayerStack.cpp
-  Log.cpp
-  OpenGLBuffer.cpp
-  OpenGLContext.cpp
   OpenGLRendererAPI.cpp
-  OpenGLVertexArray.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.cpp(68,55): warning C4312: 'reinterpret_cast': conversion from 'const uint32_t' to 'const void *' of greater size
-  Buffer.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Camera.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Mesh.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Mesh.cpp(30,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Mesh.cpp(42,96): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Mesh.cpp(51,74): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
-  Model.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(36,21): warning C4018: '<': signed/unsigned mismatch
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(43,21): warning C4018: '<': signed/unsigned mismatch
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(56,21): warning C4018: '<': signed/unsigned mismatch
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(90,22): warning C4018: '<': signed/unsigned mismatch
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(93,23): warning C4018: '<': signed/unsigned mismatch
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(116,21): warning C4018: '<': signed/unsigned mismatch
-  Shader.cpp
-  VertexArray.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  RenderRequest.cpp
-  Renderer.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  RendererAPI.cpp
-  stb_image.cpp
-  ImGuiLayer.cpp
-  imguiBuild.cpp
-  Generating Code...
-  Compiling...
-  WindowsInput.cpp
-  WindowsWindow.cpp
-  Generating Code...
+assimp-vc140-mt.lib(assimp-vc140-mt.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
+Model.obj : warning LNK4006: "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored
+Model.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored
+Model.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored
   Anomaly Engine.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\..\bin\Debug-windows-x86_64\Anomaly Engine\Anomaly Engine.lib

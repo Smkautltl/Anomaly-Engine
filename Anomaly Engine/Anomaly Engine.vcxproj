@@ -58,22 +58,25 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\Anomaly Engine\</IntDir>
     <TargetName>Anomaly Engine</TargetName>
     <TargetExt>.lib</TargetExt>
+    <LibraryPath>$(ProjectDir)vendor\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\bin\Release-windows-x86_64\Anomaly Engine\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\Anomaly Engine\</IntDir>
     <TargetName>Anomaly Engine</TargetName>
     <TargetExt>.lib</TargetExt>
+    <LibraryPath>$(ProjectDir)vendor\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <OutDir>..\bin\Dist-windows-x86_64\Anomaly Engine\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\Anomaly Engine\</IntDir>
     <TargetName>Anomaly Engine</TargetName>
     <TargetExt>.lib</TargetExt>
+    <LibraryPath>$(ProjectDir)vendor\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>aepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AE_PLATFORM_WINDOWS;AE_BUILD_DLL;GLFW_INCLUDE_NONE;AE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -89,12 +92,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)vendor\assimp\lib;</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>aepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AE_PLATFORM_WINDOWS;AE_BUILD_DLL;GLFW_INCLUDE_NONE;AE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -114,12 +118,13 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)vendor\assimp\lib;</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>aepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AE_PLATFORM_WINDOWS;AE_BUILD_DLL;GLFW_INCLUDE_NONE;AE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -139,7 +144,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)vendor\assimp\lib;</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -178,6 +184,8 @@
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\aepch.h" />
+    <ClInclude Include="vendor\assimp\include\ai_assert.h" />
+    <ClInclude Include="vendor\assimp\include\anim.h" />
     <ClInclude Include="vendor\assimp\include\assimp\aabb.h" />
     <ClInclude Include="vendor\assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="vendor\assimp\include\assimp\anim.h" />
@@ -255,6 +263,79 @@
     <ClInclude Include="vendor\assimp\include\assimp\Vertex.h" />
     <ClInclude Include="vendor\assimp\include\assimp\XMLTools.h" />
     <ClInclude Include="vendor\assimp\include\assimp\ZipArchiveIOSystem.h" />
+    <ClInclude Include="vendor\assimp\include\BaseImporter.h" />
+    <ClInclude Include="vendor\assimp\include\Bitmap.h" />
+    <ClInclude Include="vendor\assimp\include\BlobIOSystem.h" />
+    <ClInclude Include="vendor\assimp\include\ByteSwapper.h" />
+    <ClInclude Include="vendor\assimp\include\camera.h" />
+    <ClInclude Include="vendor\assimp\include\cexport.h" />
+    <ClInclude Include="vendor\assimp\include\cfileio.h" />
+    <ClInclude Include="vendor\assimp\include\cimport.h" />
+    <ClInclude Include="vendor\assimp\include\color4.h" />
+    <ClInclude Include="vendor\assimp\include\Compiler\poppack1.h" />
+    <ClInclude Include="vendor\assimp\include\Compiler\pstdint.h" />
+    <ClInclude Include="vendor\assimp\include\Compiler\pushpack1.h" />
+    <ClInclude Include="vendor\assimp\include\config.h" />
+    <ClInclude Include="vendor\assimp\include\CreateAnimMesh.h" />
+    <ClInclude Include="vendor\assimp\include\DefaultIOStream.h" />
+    <ClInclude Include="vendor\assimp\include\DefaultIOSystem.h" />
+    <ClInclude Include="vendor\assimp\include\DefaultLogger.hpp" />
+    <ClInclude Include="vendor\assimp\include\Defines.h" />
+    <ClInclude Include="vendor\assimp\include\defs.h" />
+    <ClInclude Include="vendor\assimp\include\Exceptional.h" />
+    <ClInclude Include="vendor\assimp\include\Exporter.hpp" />
+    <ClInclude Include="vendor\assimp\include\fast_atof.h" />
+    <ClInclude Include="vendor\assimp\include\GenericProperty.h" />
+    <ClInclude Include="vendor\assimp\include\Hash.h" />
+    <ClInclude Include="vendor\assimp\include\Importer.hpp" />
+    <ClInclude Include="vendor\assimp\include\importerdesc.h" />
+    <ClInclude Include="vendor\assimp\include\IOStream.hpp" />
+    <ClInclude Include="vendor\assimp\include\IOStreamBuffer.h" />
+    <ClInclude Include="vendor\assimp\include\IOSystem.hpp" />
+    <ClInclude Include="vendor\assimp\include\irrXMLWrapper.h" />
+    <ClInclude Include="vendor\assimp\include\light.h" />
+    <ClInclude Include="vendor\assimp\include\LineSplitter.h" />
+    <ClInclude Include="vendor\assimp\include\LogAux.h" />
+    <ClInclude Include="vendor\assimp\include\Logger.hpp" />
+    <ClInclude Include="vendor\assimp\include\LogStream.hpp" />
+    <ClInclude Include="vendor\assimp\include\Macros.h" />
+    <ClInclude Include="vendor\assimp\include\material.h" />
+    <ClInclude Include="vendor\assimp\include\MathFunctions.h" />
+    <ClInclude Include="vendor\assimp\include\matrix3x3.h" />
+    <ClInclude Include="vendor\assimp\include\matrix4x4.h" />
+    <ClInclude Include="vendor\assimp\include\MemoryIOWrapper.h" />
+    <ClInclude Include="vendor\assimp\include\mesh.h" />
+    <ClInclude Include="vendor\assimp\include\metadata.h" />
+    <ClInclude Include="vendor\assimp\include\NullLogger.hpp" />
+    <ClInclude Include="vendor\assimp\include\ParsingUtils.h" />
+    <ClInclude Include="vendor\assimp\include\pbrmaterial.h" />
+    <ClInclude Include="vendor\assimp\include\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="vendor\assimp\include\postprocess.h" />
+    <ClInclude Include="vendor\assimp\include\Profiler.h" />
+    <ClInclude Include="vendor\assimp\include\ProgressHandler.hpp" />
+    <ClInclude Include="vendor\assimp\include\qnan.h" />
+    <ClInclude Include="vendor\assimp\include\quaternion.h" />
+    <ClInclude Include="vendor\assimp\include\RemoveComments.h" />
+    <ClInclude Include="vendor\assimp\include\scene.h" />
+    <ClInclude Include="vendor\assimp\include\SceneCombiner.h" />
+    <ClInclude Include="vendor\assimp\include\SGSpatialSort.h" />
+    <ClInclude Include="vendor\assimp\include\SkeletonMeshBuilder.h" />
+    <ClInclude Include="vendor\assimp\include\SmoothingGroups.h" />
+    <ClInclude Include="vendor\assimp\include\SpatialSort.h" />
+    <ClInclude Include="vendor\assimp\include\StandardShapes.h" />
+    <ClInclude Include="vendor\assimp\include\StreamReader.h" />
+    <ClInclude Include="vendor\assimp\include\StreamWriter.h" />
+    <ClInclude Include="vendor\assimp\include\StringComparison.h" />
+    <ClInclude Include="vendor\assimp\include\StringUtils.h" />
+    <ClInclude Include="vendor\assimp\include\Subdivision.h" />
+    <ClInclude Include="vendor\assimp\include\texture.h" />
+    <ClInclude Include="vendor\assimp\include\TinyFormatter.h" />
+    <ClInclude Include="vendor\assimp\include\types.h" />
+    <ClInclude Include="vendor\assimp\include\vector2.h" />
+    <ClInclude Include="vendor\assimp\include\vector3.h" />
+    <ClInclude Include="vendor\assimp\include\version.h" />
+    <ClInclude Include="vendor\assimp\include\Vertex.h" />
+    <ClInclude Include="vendor\assimp\include\XMLTools.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Core\Application.cpp" />
@@ -303,6 +384,14 @@
     <None Include="vendor\assimp\include\assimp\SmoothingGroups.inl" />
     <None Include="vendor\assimp\include\assimp\vector2.inl" />
     <None Include="vendor\assimp\include\assimp\vector3.inl" />
+    <None Include="vendor\assimp\include\color4.inl" />
+    <None Include="vendor\assimp\include\material.inl" />
+    <None Include="vendor\assimp\include\matrix3x3.inl" />
+    <None Include="vendor\assimp\include\matrix4x4.inl" />
+    <None Include="vendor\assimp\include\quaternion.inl" />
+    <None Include="vendor\assimp\include\SmoothingGroups.inl" />
+    <None Include="vendor\assimp\include\vector2.inl" />
+    <None Include="vendor\assimp\include\vector3.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,13 +4,14 @@
 #include <fstream>
 
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace Anomaly
 {
 	class Shader
 	{
 	public:
-		Shader(const char* VertexSrcPath,const char* FragmentSrcPath);
+		Shader(const char* VertexSrcPath,const char* FragmentSrcPath, const char* geometryPath = nullptr);
 		~Shader();
 
 		void Bind() const;
@@ -27,13 +28,15 @@ namespace Anomaly
 
 		void SetActiveTexture(int num);
 	private:
-		void ReadInShaders(const char* VertexSrcFileName,const char* FragmentSrcFileName);
+		void ReadInShaders(const char* VertexSrcFileName,const char* FragmentSrcFileName, const char* geometryPath = nullptr);
+		void CheckComplied(unsigned int shader, std::string type);
 		
 	private:
-		uint32_t m_RendererID;
+		unsigned int m_RendererID;
 		std::string VertexSrc;
 		std::string FragmentSrc;
-		unsigned int texture0;
-		unsigned int texture1;
+		std::string GeomSrc;
+		unsigned int texture0{};
+		unsigned int texture1{};
 	};
 }

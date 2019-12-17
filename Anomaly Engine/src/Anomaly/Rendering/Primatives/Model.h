@@ -2,17 +2,23 @@
 #include "Shader.h"
 #include "Mesh.h"
 
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-#include "assimp/scene.h"
+#include "Importer.hpp"
+#include <scene.h>
+#include <postprocess.h>
 
 namespace Anomaly
 {
 	class Model
 	{
 	public:
-		Model(const char* path) { loadModel(path); }
+		Model(std::string path)
+		{
+			std::string AppPath = __argv[0];	
+			AppPath.replace(AppPath.end() - 11, AppPath.end(), path);
+			const char* Path = AppPath.c_str();
+			
+			loadModel(Path);
+		}
 
 		void Draw(std::shared_ptr<Shader> shader);
 

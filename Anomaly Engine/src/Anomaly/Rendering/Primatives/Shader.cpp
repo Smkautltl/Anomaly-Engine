@@ -1,119 +1,57 @@
 #include "aepch.h"
 #include "Shader.h"
 
-#include <glm/gtc/type_ptr.hpp>
 #include <Anomaly/Rendering/stb_image.h>
-
 #include <glad/glad.h>
 
 namespace Anomaly
 {
-	void Shader::ReadInShaders(const char* VertexSrcFileName, const char* FragmentSrcFileName)
+	Shader::Shader(const char* VertexSrcFileName, const char* FragmentSrcFileName, const char* geometryPath)
 	{
-		std::string AppPathVert = __argv[0];	
-		AppPathVert.replace(AppPathVert.end() - 11, AppPathVert.end(), "Shaders\\" + std::string(VertexSrcFileName));
-		const char* vPath = AppPathVert.c_str();
-		
-		std::string AppPathFrag = __argv[0];
-		AppPathFrag.replace(AppPathFrag.end() - 11, AppPathFrag.end(), "Shaders\\" + std::string(FragmentSrcFileName));
-		const char* fPath = AppPathFrag.c_str();
-		
-
-		std::ifstream VertexShaderFile;
-		std::ifstream FragmentShaderFile;
-
-		VertexShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-		FragmentShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-		try
-		{
-			std::stringstream ShaderStreamVert, ShaderStreamFrag;
-			
-			VertexShaderFile.open(vPath);
-			ShaderStreamVert << VertexShaderFile.rdbuf();		
-			VertexSrc = ShaderStreamVert.str();
-			VertexShaderFile.close();
-
-			FragmentShaderFile.open(fPath);
-			ShaderStreamFrag << FragmentShaderFile.rdbuf();
-			FragmentSrc = ShaderStreamFrag.str();
-			FragmentShaderFile.close();
-			
-		}
-		catch (std::ifstream::failure e)
-		{
-			AE_CORE_ERROR("Shader File failed to read!: {0}", e.what());
-		}
-	}
-	
-	Shader::Shader(const char* VertexSrcFileName,const char* FragmentSrcFileName)
-	{
-		ReadInShaders(VertexSrcFileName, FragmentSrcFileName);
+		ReadInShaders(VertexSrcFileName, FragmentSrcFileName, geometryPath);
 		
 		// Create an empty vertex shader handle
-		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		
-		// Send the vertex shader source code to GL
-		// Note that std::string's .c_str is NULL character terminated.
 		const GLchar *source = static_cast<const GLchar *>(VertexSrc.c_str());
-		glShaderSource(vertexShader, 1, &source, nullptr);
-		
-		// Compile the vertex shader
-		glCompileShader(vertexShader);
-		
 		GLint isCompiled = 0;
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &isCompiled);
-		if(isCompiled == GL_FALSE)
+		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		{
-			GLint maxLength = 0;
-			glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &maxLength);
-		
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &infoLog[0]);
+			// Send the vertex shader source code to GL
+			// Note that std::string's .c_str is NULL character terminated.
 			
-			// We don't need the shader anymore.
-			glDeleteShader(vertexShader);
+			glShaderSource(vertexShader, 1, &source, nullptr);
+			
+			// Compile the vertex shader
+			glCompileShader(vertexShader);
+			CheckComplied(vertexShader, "VERTEX");
 
-			AE_CORE_ERROR("{0}", infoLog.data());
-			AE_CORE_ASSERT(false, "Vertex Shader compilation failed!")
-			
-			return;
 		}
-		
 		// Create an empty fragment shader handle
 		GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		
-		// Send the fragment shader source code to GL
-		// Note that std::string's .c_str is NULL character terminated.
-		source = static_cast<const GLchar *>(FragmentSrc.c_str());
-		glShaderSource(fragmentShader, 1, &source, 0);
-		
-		// Compile the fragment shader
-		glCompileShader(fragmentShader);
-		
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &isCompiled);
-		if (isCompiled == GL_FALSE)
 		{
-			GLint maxLength = 0;
-			glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &maxLength);
-		
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &infoLog[0]);
+			// Send the fragment shader source code to GL
+			source = static_cast<const GLchar *>(FragmentSrc.c_str());
+			glShaderSource(fragmentShader, 1, &source, 0);
 			
-			// We don't need the shader anymore.
-			glDeleteShader(fragmentShader);
-			// Either of them. Don't leak shaders.
-			glDeleteShader(vertexShader);
-		
-			AE_CORE_ERROR("{0}", infoLog.data());
-			AE_CORE_ASSERT(false, "Fragment Shader compilation failed!")
-			
-			// In this simple program, we'll just leave
-			return;
+			// Compile the fragment shader
+			glCompileShader(fragmentShader);	
+			CheckComplied(vertexShader, "FRAGMENT");
 		}
-		
-		// Vertex and fragment shaders are successfully compiled.
+		// Create an empty geometry shader handle
+		GLuint GeomShader = glCreateShader(GL_GEOMETRY_SHADER);
+		{
+			// Send the Geom shader source code to GL
+			if(geometryPath != nullptr)
+			{
+				source = static_cast<const GLchar *>(GeomSrc.c_str());
+				glShaderSource(GeomShader, 1, &source, 0);			
+				// Compile the fragment shader
+				glCompileShader(GeomShader);
+				CheckComplied(vertexShader, "GEOMETRY");
+				
+			}	
+		}
+
+		// Vertex, fragment and geom shaders are successfully compiled.
 		// Now time to link them together into a program.
 		// Get a program object.
 		m_RendererID = glCreateProgram();
@@ -121,39 +59,18 @@ namespace Anomaly
 		// Attach our shaders to our program
 		glAttachShader(m_RendererID, vertexShader);
 		glAttachShader(m_RendererID, fragmentShader);
+		if(geometryPath != nullptr)
+			glAttachShader(m_RendererID, GeomShader);
 		
 		// Link our program
 		glLinkProgram(m_RendererID);
-		
-		// Note the different functions here: glGetProgram* instead of glGetShader*.
-		GLint isLinked = 0;
-		glGetProgramiv(m_RendererID, GL_LINK_STATUS, (int *)&isLinked);
-		if (isLinked == GL_FALSE)
-		{
-			GLint maxLength = 0;
-			glGetProgramiv(m_RendererID, GL_INFO_LOG_LENGTH, &maxLength);
-		
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetProgramInfoLog(m_RendererID, maxLength, &maxLength, &infoLog[0]);
-			
-			// We don't need the program anymore.
-			glDeleteProgram(m_RendererID);
-			// Don't leak shaders either.
-			glDeleteShader(vertexShader);
-			glDeleteShader(fragmentShader);
-		
-			// Use the infoLog as you see fit.
-			
-			AE_CORE_ERROR("{0}", infoLog.data());
-			AE_CORE_ASSERT(false, "Shaders Linking failed!")
-			// In this simple program, we'll just leave
-			return;
-		}
+		CheckComplied(m_RendererID, "PROGRAM");
 		
 		// Always detach shaders after a successful link.
-		glDetachShader(m_RendererID, vertexShader);
-		glDetachShader(m_RendererID, fragmentShader);
+		glDeleteShader(vertexShader);
+		glDeleteShader(fragmentShader);
+		if(geometryPath != nullptr)
+			glDeleteShader(GeomShader);
 
 	}
 	Shader::~Shader()
@@ -170,6 +87,105 @@ namespace Anomaly
 		glUseProgram(0);
 	}
 
+	void Shader::ReadInShaders(const char* VertexSrcFileName, const char* FragmentSrcFileName, const char* geometrySrcFileName)
+	{
+		//Vertex Shader
+		{
+			std::string AppPathVert = __argv[0];	
+			AppPathVert.replace(AppPathVert.end() - 11, AppPathVert.end(), "Shaders\\" + std::string(VertexSrcFileName));
+			const char* vPath = AppPathVert.c_str();
+
+			std::ifstream VertexShaderFile;
+			VertexShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+			
+			try
+			{		
+				VertexShaderFile.open(vPath);
+				
+				std::stringstream ShaderStreamVert;
+				ShaderStreamVert << VertexShaderFile.rdbuf();		
+				VertexSrc = ShaderStreamVert.str();
+				
+				VertexShaderFile.close();
+			}
+			catch (std::ifstream::failure e)
+			{
+				AE_CORE_ERROR("Vertex Shader File failed to read!: {0}", e.what());
+			}
+		}
+
+		//Fragment Shader
+		{
+			std::string AppPathFrag = __argv[0];
+			AppPathFrag.replace(AppPathFrag.end() - 11, AppPathFrag.end(), "Shaders\\" + std::string(FragmentSrcFileName));
+			const char* fPath = AppPathFrag.c_str();
+			
+			std::stringstream ShaderStreamFrag;
+			std::ifstream FragmentShaderFile;
+			FragmentShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+			try
+			{			
+				FragmentShaderFile.open(fPath);
+				ShaderStreamFrag << FragmentShaderFile.rdbuf();
+				FragmentSrc = ShaderStreamFrag.str();
+				FragmentShaderFile.close();
+			}
+			catch (std::ifstream::failure e)
+			{
+				AE_CORE_ERROR("Fragment Shader File failed to read!: {0}", e.what());
+			}
+		}
+		
+		//Geom Shader
+		{
+			if(geometrySrcFileName != nullptr)
+			{
+				std::string AppPathGeom = __argv[0];
+				AppPathGeom.replace(AppPathGeom.end() - 11, AppPathGeom.end(), "Shaders\\" + std::string(geometrySrcFileName));
+				const char* gPath = AppPathGeom.c_str();
+				
+				std::stringstream ShaderStreamGeom;
+				std::ifstream GeomShaderFile;
+				GeomShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+				try
+				{
+					GeomShaderFile.open(gPath);
+					ShaderStreamGeom << GeomShaderFile.rdbuf();
+					GeomSrc = ShaderStreamGeom.str();
+					GeomShaderFile.close();
+				}
+				catch (std::ifstream::failure e)
+				{
+					AE_CORE_ERROR("Geometry Shader File failed to read!: {0}", e.what());
+				}
+			}
+		}
+	}
+	void Shader::CheckComplied(unsigned shader, std::string type)
+	{
+		GLint Completed;
+		GLchar infoLog[1024];
+
+		if(type != "PROGRAM")
+		{
+			glGetShaderiv(shader, GL_COMPILE_STATUS, &Completed);
+			if(!Completed)
+			{
+				glGetProgramInfoLog(shader, 1024, NULL, infoLog);
+				AE_CORE_ERROR("Shader failed to COMPILE of Type:{0} \n LOG:{1}", type, infoLog );
+			}
+		}
+		else
+		{
+			glGetProgramiv(shader, GL_LINK_STATUS, &Completed);
+			if(!Completed)
+			{
+				glGetProgramInfoLog(shader, 1024, NULL, infoLog);
+				AE_CORE_ERROR("Shader failed to LINK of Type:{0} \n LOG:{1}", type, infoLog );
+			}
+		}
+	}
+	
 	void Shader::GenerateTextures()
 	{
 		{

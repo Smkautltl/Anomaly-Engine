@@ -3,6 +3,7 @@
 #include "RenderRequest.h"
 #include "Primatives/Camera.h"
 #include "Primatives/Shader.h"
+#include "Primatives/Model.h"
 
 namespace Anomaly
 {
@@ -17,6 +18,7 @@ namespace Anomaly
 		static void SetUniform(const std::shared_ptr<Shader>& shader, const std::string& name, const glm::mat4& value)	{ shader->SetUniformMatrix4(name, value); }
 		
 		static void Submission(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader);		
+		static void Submission(Model& model, const std::shared_ptr<Shader>& shader);		
 		
 		inline static RendererAPI::API GetRendererAPI() { return RendererAPI::GetAPI(); }
 

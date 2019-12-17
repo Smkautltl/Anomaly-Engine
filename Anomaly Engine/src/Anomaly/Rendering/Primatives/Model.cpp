@@ -1,5 +1,6 @@
 #include "aepch.h"
 #include "Model.h"
+
 #include "glad/glad.h"
 #include "Anomaly/Rendering/stb_image.h"
 
@@ -16,7 +17,7 @@ namespace Anomaly
 	void Model::loadModel(std::string path)
 	{
 		Assimp::Importer importer;
-		const aiScene *Scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+		const aiScene* Scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
 		if(!Scene || Scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !Scene->mRootNode)
 		{
@@ -35,7 +36,7 @@ namespace Anomaly
 		//Processes imported meshes
 		for(auto i = 0; i < node->mNumMeshes; i++)
 		{
-			aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 			m_meshes.push_back(processMesh(mesh, scene));
 		}
 
@@ -82,6 +83,17 @@ namespace Anomaly
 			{
 				vertex.TexCoords = glm::vec2(0.f,0.f);
 			}
+
+			vector.x = mesh->mTangents[i].x;
+            vector.y = mesh->mTangents[i].y;
+            vector.z = mesh->mTangents[i].z;
+            vertex.Tangent = vector;
+
+            vector.x = mesh->mBitangents[i].x;
+            vector.y = mesh->mBitangents[i].y;
+            vector.z = mesh->mBitangents[i].z;
+            vertex.BiTangent = vector;
+			
 			vertices.push_back(vertex);
 		}
 		//----------------------------------------------------------------------
@@ -90,22 +102,26 @@ namespace Anomaly
 		for (auto i = 0; i < mesh->mNumFaces; i++)
 		{
 			aiFace face = mesh->mFaces[i];
-			for (auto j = 0; j < face.mNumIndices; j++)
+			for (unsigned int j = 0; j < face.mNumIndices; j++)
 				indices.push_back(face.mIndices[j]);
 		}
 		//----------------------------------------------------------------------
 
 		//Processes Materials---------------------------------------------------
-		if(mesh->mMaterialIndex >= 0)
-		{
-			aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
+		
+		aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
 
-			std::vector<Texture> diffusemaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
-			textures.insert(textures.end(), diffusemaps.begin(), diffusemaps.end());
+		std::vector<Texture> diffusemaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+		textures.insert(textures.end(), diffusemaps.begin(), diffusemaps.end());
 
-			std::vector<Texture> specularmaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
-			textures.insert(textures.end(), specularmaps.begin(), specularmaps.end());
-		}
+		std::vector<Texture> specularmaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+		textures.insert(textures.end(), specularmaps.begin(), specularmaps.end());
+
+		std::vector<Texture> normalmaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
+		textures.insert(textures.end(), normalmaps.begin(), normalmaps.end());
+
+		std::vector<Texture> heightmaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height");
+		textures.insert(textures.end(), heightmaps.begin(), heightmaps.end());
 
 		return Mesh(vertices, indices, textures);
 	}
@@ -118,7 +134,7 @@ namespace Anomaly
 			aiString aiStr;
 			mat->GetTexture(type, i, &aiStr);
 			bool skiploading = false;
-			for(auto j = 0; j < m_TexturesLoaded.size(); j++)
+			for (auto j = 0; j < m_TexturesLoaded.size(); j++)
 			{
 				textures.push_back(m_TexturesLoaded[j]);
 				skiploading = true;
@@ -128,7 +144,7 @@ namespace Anomaly
 			if(!skiploading)
 			{
 				Texture texture;
-				//texture.id = TextureFromFile(aiStr.C_str(), m_directory);
+				texture.id = TextureFromFile(aiStr.C_Str(), m_directory);
 				texture.type = typeName;
 				texture.path = aiStr.C_Str();
 				textures.push_back(texture);

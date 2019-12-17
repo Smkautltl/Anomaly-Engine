@@ -2,7 +2,6 @@
 #include "OpenGLRendererAPI.h"
 
 #include <glad/glad.h>
-#include <glm/gtc/matrix_transform.hpp>
 
 namespace Anomaly
 {
@@ -18,6 +17,11 @@ namespace Anomaly
 
 	void OpenGLRendererAPI::DrawCall(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader)
 	{
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		vertexarray->Bind();
+		
+		glDrawElements(GL_TRIANGLES, vertexarray->GetIndexBuffers()[0]->GetCount(), GL_UNSIGNED_INT, 0);
+		
+		vertexarray->UnBind();
+		glActiveTexture(GL_TEXTURE0);
 	}
 }
