@@ -1,5 +1,9 @@
 ﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
-  OpenGLRendererAPI.cpp
+  Model.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(46,21): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(59,21): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(104,22): warning C4018: '<': signed/unsigned mismatch
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Model.cpp(134,21): warning C4018: '<': signed/unsigned mismatch
 assimp-vc140-mt.lib(assimp-vc140-mt.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
 Model.obj : warning LNK4006: "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored
 Model.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored

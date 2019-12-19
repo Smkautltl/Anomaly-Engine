@@ -2,6 +2,7 @@
 #include "OpenGLVertexArray.h"
 
 #include <glad/glad.h>
+#include "Anomaly/Rendering/Primatives/Mesh.h"
 
 namespace Anomaly
 {
@@ -59,7 +60,8 @@ namespace Anomaly
 		uint32_t i = 0;
 		const auto& layout = vertexbuffer->GetLayout();
 		for (const auto& element : layout)
-		{	
+		{
+			glEnableVertexAttribArray(i);
 			glVertexAttribPointer(i, 
 								  element.GetComponentCount(), 
 								  ShaderDataType_To_GLenum(element.Type), 
@@ -67,10 +69,10 @@ namespace Anomaly
 								  layout.GetStride(), 
 								  reinterpret_cast<const void*>(element.Offset)
 								 );
-			glEnableVertexAttribArray(i);
+			
 			i++;
 		}
-
+		
 		m_VertexBuffers.push_back(vertexbuffer);
 	}
 	void OpenGLVertexArray::AddIndexBuffer(const std::shared_ptr<IndexBuffer>& indexbuffer)

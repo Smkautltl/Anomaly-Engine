@@ -9,7 +9,7 @@ namespace Anomaly
 {
 	void Model::Draw(std::shared_ptr<Shader> shader)
 	{
-		for(auto i = 0; i < m_meshes.size();i++)
+		for(auto i = 0; i < m_meshes.size(); i++)
 			m_meshes[i].Draw(shader);
 		
 	}
@@ -25,8 +25,10 @@ namespace Anomaly
 			return;
 		}
 
-		m_directory = path.substr(0, path.find_last_of('/'));
+		m_directory = path.substr(0, path.find_last_of('\\'));
 
+		AE_CORE_INFO("Models directory path: {0}", m_directory);
+		
 		processNode(Scene->mRootNode, Scene);
 		
 	}
@@ -34,7 +36,7 @@ namespace Anomaly
 	void Model::processNode(aiNode* node, const aiScene* scene)
 	{
 		//Processes imported meshes
-		for(auto i = 0; i < node->mNumMeshes; i++)
+		for(unsigned int i = 0; i < node->mNumMeshes; i++)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 			m_meshes.push_back(processMesh(mesh, scene));
@@ -69,7 +71,7 @@ namespace Anomaly
 			vector.x = mesh->mNormals[i].x;
 			vector.y = mesh->mNormals[i].y;
 			vector.z = mesh->mNormals[i].z;
-			vertex.Position = vector;
+			vertex.Normal = vector;
 
 			//Processes meshes TexCoords
 			if(mesh->mTextureCoords[0])
@@ -109,7 +111,7 @@ namespace Anomaly
 
 		//Processes Materials---------------------------------------------------
 		
-		aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
+		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
 		std::vector<Texture> diffusemaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
 		textures.insert(textures.end(), diffusemaps.begin(), diffusemaps.end());
@@ -117,10 +119,10 @@ namespace Anomaly
 		std::vector<Texture> specularmaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
 		textures.insert(textures.end(), specularmaps.begin(), specularmaps.end());
 
-		std::vector<Texture> normalmaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
+		std::vector<Texture> normalmaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
 		textures.insert(textures.end(), normalmaps.begin(), normalmaps.end());
 
-		std::vector<Texture> heightmaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height");
+		std::vector<Texture> heightmaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
 		textures.insert(textures.end(), heightmaps.begin(), heightmaps.end());
 
 		return Mesh(vertices, indices, textures);
@@ -134,11 +136,15 @@ namespace Anomaly
 			aiString aiStr;
 			mat->GetTexture(type, i, &aiStr);
 			bool skiploading = false;
-			for (auto j = 0; j < m_TexturesLoaded.size(); j++)
+			
+			for (const auto& j : m_TexturesLoaded)
 			{
-				textures.push_back(m_TexturesLoaded[j]);
-				skiploading = true;
-				break;
+				if(std::strcmp(j.path.data(), aiStr.C_Str()) == 0)
+				{
+					textures.push_back(j);
+					skiploading = true;
+					break;
+				}
 			}
 
 			if(!skiploading)
@@ -157,7 +163,7 @@ namespace Anomaly
 	unsigned int Model::TextureFromFile(const char* path, const std::string& directory, bool gamma)
 	{
 		std::string filename(path);
-		filename = directory + '/' + filename;
+		filename = directory + '\\' + filename;
 
 		unsigned int textureID;
 		glGenTextures(1, &textureID);

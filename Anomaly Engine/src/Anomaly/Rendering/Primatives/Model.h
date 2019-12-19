@@ -11,7 +11,8 @@ namespace Anomaly
 	class Model
 	{
 	public:
-		Model(std::string path)
+		Model(std::string path, bool gamma = false)
+			:m_GammaCorrection(gamma)
 		{
 			std::string AppPath = __argv[0];	
 			AppPath.replace(AppPath.end() - 11, AppPath.end(), path);
@@ -33,6 +34,7 @@ namespace Anomaly
 		std::vector<Mesh> m_meshes;
 		std::string m_directory;
 		std::vector<Texture> m_TexturesLoaded;
+		bool m_GammaCorrection;
 	};
 	
 }

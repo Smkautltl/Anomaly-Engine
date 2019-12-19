@@ -71,7 +71,7 @@ namespace Anomaly
 		glDeleteShader(fragmentShader);
 		if(geometryPath != nullptr)
 			glDeleteShader(GeomShader);
-
+		
 	}
 	Shader::~Shader()
 	{
