@@ -5,6 +5,7 @@
 #include "../Rendering/Renderer.h"
 #include "GLFW/glfw3.h"
 #include "imgui.h"
+#include "glad/glad.h"
 
 namespace Anomaly
 {
@@ -22,6 +23,12 @@ namespace Anomaly
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(true);
 
+		glEnable(GL_DEPTH_TEST);
+		//Culling faces
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_FRONT);  
+		glFrontFace(GL_CW);
+		
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 		

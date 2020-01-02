@@ -152,4 +152,16 @@ namespace Anomaly
 
 		static IndexBuffer* Create(uint32_t* indices, uint32_t count);
 	};
+	//class FrameBuffer
+	//{
+	//public:
+	//	virtual ~FrameBuffer() {};
+	//
+	//	virtual void Bind() const = 0;
+	//	virtual void UnBind() const = 0;
+	//
+	//	static FrameBuffer* Create(unsigned int textureBuffer);
+	//
+	//	virtual void UpdateBuffer(unsigned int textureBuffer);
+	//};
 }

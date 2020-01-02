@@ -17,18 +17,20 @@ namespace Anomaly
 		void Bind() const;
 		void UnBind() const;
 
-		void GenerateTextures();
-		void BindTextures(unsigned int id);
+		void GenerateTextures(const std::vector<char*> SrcFileName);
+		void BindTexture(unsigned int id);
+		void BindAllTextures();
 		
-		void SetUniformMatrix4(const std::string& name, const glm::mat4& matrix);
-		void SetUniformBool(const std::string& name, bool value);
-		void SetUniformInt(const std::string& name, int value);
-		void SetUniformFloat(const std::string& name, float value);
-		void SetUniformVec3(const std::string& name, glm::vec3 value);
+		void SetUniformMatrix4(const std::string& name, const glm::mat4& matrix) const;
+		void SetUniformBool(const std::string& name, bool value) const;
+		void SetUniformInt(const std::string& name, int value) const;
+		void SetUniformFloat(const std::string& name, float value) const;
+		void SetUniformVec3(const std::string& name, glm::vec3 value) const;
 
 		void SetActiveTexture(int num);
 	private:
-		void ReadInShaders(const char* VertexSrcFileName,const char* FragmentSrcFileName, const char* geometryPath = nullptr);
+		void ReadInShaders(const char* VertexSrcFileName,const char* FragmentSrcFileName, const char*
+			                   geometrySrcFileName = nullptr);
 		void CheckComplied(unsigned int shader, std::string type);
 		
 	private:
@@ -36,7 +38,10 @@ namespace Anomaly
 		std::string VertexSrc;
 		std::string FragmentSrc;
 		std::string GeomSrc;
-		unsigned int texture0{};
-		unsigned int texture1{};
+		std::vector<unsigned int> m_textures;
+		const char* vPath;
+		const char* fPath;
+		const char* gPath;
+		
 	};
 }

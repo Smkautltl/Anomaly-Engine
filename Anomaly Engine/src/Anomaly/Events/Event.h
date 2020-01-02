@@ -64,7 +64,7 @@ namespace Anomaly
 		[[nodiscard]] virtual std::string ToString() const { return GetName(); }
 
 		//Checks to see if the event is in the given categories
-		bool IsInCategory(EventCategory category)
+		bool IsInCategory(EventCategory category) const
 		{
 			return GetCategoryFlags() & category;
 		}

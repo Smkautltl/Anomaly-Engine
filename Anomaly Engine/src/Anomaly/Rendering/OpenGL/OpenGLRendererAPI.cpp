@@ -18,10 +18,9 @@ namespace Anomaly
 	void OpenGLRendererAPI::DrawCall(const std::shared_ptr<VertexArray>& vertexarray, const std::shared_ptr<Shader>& shader)
 	{
 		vertexarray->Bind();
-		
 		glDrawElements(GL_TRIANGLES, vertexarray->GetIndexBuffers()[0]->GetCount(), GL_UNSIGNED_INT, 0);
-		
 		vertexarray->UnBind();
 		glActiveTexture(GL_TEXTURE0);
+		
 	}
 }

@@ -1,4 +1,12 @@
-﻿     Creating library ..\bin\Debug-windows-x86_64\Sandbox\Sandbox.lib and object ..\bin\Debug-windows-x86_64\Sandbox\Sandbox.exp
-LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
-GLAD.lib(glad.obj) : warning LNK4099: PDB 'GLAD.pdb' was not found with 'GLAD.lib(glad.obj)' or at 'D:\Programming Learning\C++\Anomaly Engine\bin\Debug-windows-x86_64\Sandbox\GLAD.pdb'; linking object as if no debug info
+﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
+  SandboxApp.cpp
+D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\Primatives\Camera.h(74,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(45,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(46,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(53,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(54,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(61,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(62,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(69,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Programming Learning\C++\Anomaly Engine\Sandbox\src\SandboxApp.cpp(70,1): warning C4305: 'argument': truncation from 'double' to 'float'
   Sandbox.vcxproj -> D:\Programming Learning\C++\Anomaly Engine\Sandbox\..\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe

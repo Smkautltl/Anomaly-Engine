@@ -210,7 +210,8 @@ public:
 
     // -----------------------------------------
     /** access the underlying stream object */
-    StreamReaderLE& get_stream() {
+    StreamReaderLE& get_stream() const
+    {
         return stream;
     }
 

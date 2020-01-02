@@ -24,17 +24,17 @@ namespace Anomaly
 			std::string num;
 			std::string name = m_Textures[i].type;
 
-			if(name == "texture_diffuse")
+			if(name == "material.texture_diffuse")
 				num = std::to_string(diffuseN++);
-			else if(name == "texture_specular")
+			else if(name == "material.texture_specular")
 				num = std::to_string(specularN++);
-			else if(name == "texture_normal")
+			else if(name == "material.texture_normal")
 				num = std::to_string(normalN++);
-			else if(name == "texture_height")
+			else if(name == "material.texture_height")
 				num = std::to_string(heightN++);
 
 			shader->SetUniformInt(name + num, i);
-			shader->BindTextures(m_Textures[i].id);
+			shader->BindTexture(m_Textures[i].id);
 		}
 		
 		m_VertexArray->Bind();

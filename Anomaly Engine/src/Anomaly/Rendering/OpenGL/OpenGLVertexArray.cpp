@@ -31,8 +31,7 @@ namespace Anomaly
 	}
 	
 	OpenGLVertexArray::OpenGLVertexArray()
-	{
-		glEnable(GL_DEPTH_TEST);
+	{	
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 	OpenGLVertexArray::~OpenGLVertexArray()

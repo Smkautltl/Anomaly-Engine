@@ -86,15 +86,22 @@ namespace Anomaly
 				vertex.TexCoords = glm::vec2(0.f,0.f);
 			}
 
-			vector.x = mesh->mTangents[i].x;
-            vector.y = mesh->mTangents[i].y;
-            vector.z = mesh->mTangents[i].z;
-            vertex.Tangent = vector;
-
-            vector.x = mesh->mBitangents[i].x;
-            vector.y = mesh->mBitangents[i].y;
-            vector.z = mesh->mBitangents[i].z;
-            vertex.BiTangent = vector;
+			if(mesh->mTangents != nullptr)
+			{
+				vector.x = mesh->mTangents[i].x;
+				vector.y = mesh->mTangents[i].y;
+				vector.z = mesh->mTangents[i].z;
+				vertex.Tangent = vector;
+			}
+			
+			if(mesh->mBitangents != nullptr)
+			{
+				vector.x = mesh->mBitangents[i].x;
+				vector.y = mesh->mBitangents[i].y;
+				vector.z = mesh->mBitangents[i].z;
+				vertex.BiTangent = vector;
+			}
+            
 			
 			vertices.push_back(vertex);
 		}

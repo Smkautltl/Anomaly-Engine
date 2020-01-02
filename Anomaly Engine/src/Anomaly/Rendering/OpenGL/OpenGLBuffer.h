@@ -41,4 +41,21 @@ namespace Anomaly
 		uint32_t m_Count;
 		
 	};
+
+	//class OpenGLFrameBuffer : public FrameBuffer
+	//{
+	//public:
+	//	OpenGLFrameBuffer(unsigned int textureBuffer);
+	//	virtual ~OpenGLFrameBuffer() {};
+	//
+	//	virtual void Bind() const override;
+	//	virtual void UnBind() const override;
+	//
+	//	virtual void UpdateBuffer(unsigned int textureBuffer) override;
+	//
+	//private:
+	//	unsigned int m_FrameBuffer;
+	//	unsigned int m_RenderBuffer;
+	//
+	//};
 }
