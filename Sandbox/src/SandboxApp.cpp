@@ -17,10 +17,13 @@ public:
 		
 		m_CamPos =	{0.f, 0.f, 3.0f};
 
+		m_frameBuffer.reset(Anomaly::FrameBuffer::Create());
 	}
 
 	void OnUpdate(Anomaly::TimeStep deltaTime) override
 	{
+		m_frameBuffer->Bind();
+		
 		glm::vec3 pointLightPositions[] = 
 		{
 			glm::vec3( 0.7f,  0.2f,  2.0f),
@@ -117,9 +120,17 @@ public:
 		LastY = Anomaly::Input::GetMouseY();
 		
 		m_Camera.SetPosition(m_CamPos);
-		m_Camera.RecalcuteProjMatrix(45.f,1280.f, 720.f);	
+		m_Camera.RecalcuteProjMatrix(45.f, WindowWidth, WindowHeight);
 
-		
+		if(!FPSSetup)
+		{
+			lastTime = deltaTime.GetglfwTime(); 
+			Frames = 0;
+			
+			FPSSetup = true;
+		}
+
+		glfwTime = deltaTime.GetglfwTime();
 		
 		Anomaly::Renderer::BeginScene(m_Camera);
 		{
@@ -138,7 +149,6 @@ public:
 				m_LightShader->SetUniformMatrix4("u_ModelMatrix", model);
 				
 				Anomaly::Renderer::Submission(Sphere, m_LightShader);
-				
 			}
 			
 			//Renders the Nanosuit model
@@ -152,19 +162,40 @@ public:
 				// render the loaded model
 				glm::mat4 model = glm::mat4(1.0f);
 				model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene
-				model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));	// it's a bit too big for our scene, so scale it down
+				model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));	// it's a bit too big for our scene, so scale it down
 				m_Shader->SetUniformMatrix4("u_ModelMatrix", model);
 				
 				Anomaly::Renderer::Submission(NanoSuit, m_Shader);
 			}
 		}
 		Anomaly::Renderer::EndScene();
-		//ImGui::GetWindowDrawList()->AddImage();
+
+		m_frameBuffer->UnBind();
 	}
 
 	void OnImGuiRender() override
 	{
+		ImGui::DockSpaceOverViewport();
+		ImGui::Begin("FPS");
 		
+		double currentTime = glfwTime;
+		Frames++;
+		if(currentTime - lastTime > 1.0)
+		{
+			FPS = Frames;
+			Frames = 0;
+			lastTime = currentTime;
+		}
+		ImGui::Text("FPS: %i", FPS);		
+		ImGui::Text("Average Frame Time: %f", 1000.0/FPS);		
+		ImGui::End();
+
+		ImGui::Begin("Renderer");
+		WindowWidth = ImGui::GetWindowWidth();
+		WindowHeight = ImGui::GetWindowHeight();
+		
+		ImGui::GetWindowDrawList()->AddImage((void*)m_frameBuffer->ReturnFrameBuffer(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y, WindowWidth, WindowHeight), ImVec2(ImGui::GetCursorScreenPos()), ImVec2(ImGui::GetCursorScreenPos().x + WindowWidth, ImGui::GetCursorScreenPos().y + WindowHeight));
+		ImGui::End();
 	}
 	
 	void OnEvent(Anomaly::Event& event) override
@@ -173,19 +204,33 @@ public:
 	}
 	
 private:
+	//Shader Variables
 	std::shared_ptr<Anomaly::VertexArray> m_VertexArray;
 	std::shared_ptr<Anomaly::Shader> m_Shader;
 	std::shared_ptr<Anomaly::Shader> m_LightShader;
 	bool LightingCompiled = false;
-	
+
+	//Camera Variables
 	Anomaly::PerspecCamera m_Camera;
 	glm::vec3 m_CamPos =	{0.f, 0.f, 3.0f};
 	float m_CamRot = 0.f;
 	float LastX, LastY;
+
+	//Model Variables
 	Anomaly::Model NanoSuit;
 	Anomaly::Model Sphere;
-	
-	
+
+	//FPS Variables
+	bool FPSSetup = false;
+	int Frames;
+	double lastTime;
+	double glfwTime;
+	int FPS;
+
+	//FrameBuffer
+	std::shared_ptr<Anomaly::FrameBuffer> m_frameBuffer;
+	float WindowWidth = 1280;
+	float WindowHeight = 720;
 };
 
 class Sandbox final : public Anomaly::Application

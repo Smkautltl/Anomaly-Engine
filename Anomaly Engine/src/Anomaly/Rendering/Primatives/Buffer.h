@@ -140,6 +140,7 @@ namespace Anomaly
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 		virtual const BufferLayout& GetLayout() const = 0;
 	};
+	
 	class IndexBuffer
 	{
 	public:
@@ -152,16 +153,18 @@ namespace Anomaly
 
 		static IndexBuffer* Create(uint32_t* indices, uint32_t count);
 	};
-	//class FrameBuffer
-	//{
-	//public:
-	//	virtual ~FrameBuffer() {};
-	//
-	//	virtual void Bind() const = 0;
-	//	virtual void UnBind() const = 0;
-	//
-	//	static FrameBuffer* Create(unsigned int textureBuffer);
-	//
-	//	virtual void UpdateBuffer(unsigned int textureBuffer);
-	//};
+	
+	class FrameBuffer
+	{
+	public:
+		virtual ~FrameBuffer() {};
+	
+		virtual void Bind() const = 0;
+		virtual void UnBind() const = 0;
+	
+		static FrameBuffer* Create();
+	
+		virtual void UpdateBuffer(unsigned int textureBuffer) = 0;
+		virtual unsigned int ReturnFrameBuffer(float x, float y, float Width, float Height) = 0;
+	};
 }

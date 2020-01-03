@@ -52,32 +52,44 @@ void Anomaly::OpenGLIndexBuffer::UnBind() const
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-//Anomaly::OpenGLFrameBuffer::OpenGLFrameBuffer(unsigned int textureBuffer)
-//{
-//	glGenFramebuffers(1, &m_FrameBuffer);
-//	glGenRenderbuffers(1, &m_RenderBuffer);
-//	Bind();
-//	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1280.f, 720.f);
-//	UpdateBuffer(textureBuffer);
-//	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RenderBuffer);
-//	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-//		AE_CORE_ERROR("Frame buffer is not complete");
-//	UnBind();
-//}
-//
-//void Anomaly::OpenGLFrameBuffer::Bind() const
-//{
-//	glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
-//	glBindRenderbuffer(GL_RENDERBUFFER, m_RenderBuffer);
-//}
-//
-//void Anomaly::OpenGLFrameBuffer::UnBind() const
-//{
-//	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//	glBindRenderbuffer(GL_RENDERBUFFER, 0);
-//}
-//
-//void Anomaly::OpenGLFrameBuffer::UpdateBuffer(unsigned texturebuffer)
-//{
-//	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texturebuffer, 0);
-//}
+Anomaly::OpenGLFrameBuffer::OpenGLFrameBuffer()
+{
+	glGenFramebuffers(1, &m_FrameBuffer);
+	Bind();
+
+	glGenTextures(1, &m_textureBuffer);
+	glBindTexture(GL_TEXTURE_2D, m_textureBuffer);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1280.f, 720.f, 0, GL_RGB, GL_UNSIGNED_INT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_textureBuffer, 0);
+	UnBind();
+}
+
+Anomaly::OpenGLFrameBuffer::~OpenGLFrameBuffer()
+{
+	glDeleteBuffers(1, &m_FrameBuffer);
+}
+
+void Anomaly::OpenGLFrameBuffer::Bind() const
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
+}
+void Anomaly::OpenGLFrameBuffer::UnBind() const
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void Anomaly::OpenGLFrameBuffer::UpdateBuffer(unsigned texturebuffer)
+{
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texturebuffer, 0);
+}
+unsigned Anomaly::OpenGLFrameBuffer::ReturnFrameBuffer(float x, float y, float Width, float Height)
+{
+	glViewport(0, 0, Width, Height);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_INT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_textureBuffer, 0);
+	return m_textureBuffer;
+}

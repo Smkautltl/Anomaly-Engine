@@ -56,20 +56,20 @@ namespace Anomaly
 		return nullptr;
 	}
 
-	//FrameBuffer* FrameBuffer::Create(unsigned textureBuffer)
-	//{
-	//	switch (Renderer::GetRendererAPI())
-	//	{
-	//		case RendererAPI::API::None:
-	//			AE_CORE_ASSERT(false, "Renderer API set to None!");
-	//			return nullptr;
-	//		
-	//		case RendererAPI::API::OpenGL:
-	//			return new OpenGLFrameBuffer(textureBuffer);
-	//			break;
-	//	}
-	//
-	//	AE_CORE_ASSERT(false, "Renderer API has not been set!");
-	//	return nullptr;
-	//}
+	FrameBuffer* FrameBuffer::Create()
+	{
+		switch (Renderer::GetRendererAPI())
+		{
+			case RendererAPI::API::None:
+				AE_CORE_ASSERT(false, "Renderer API set to None!");
+				return nullptr;
+			
+			case RendererAPI::API::OpenGL:
+				return new OpenGLFrameBuffer();
+				break;
+		}
+	
+		AE_CORE_ASSERT(false, "Renderer API has not been set!");
+		return nullptr;
+	}
 }

@@ -60,28 +60,28 @@ namespace Anomaly
 		}
 	}
 	void Application::Run()
-	{
-		//ImGui::Begin("Editor");
-		//ImGui::DockSpaceOverViewport();	
+	{				
+		double lastTime = glfwGetTime();
+		int Frames = 0;
+		
 		while (m_Running)
 		{
 			float time = static_cast<float>(glfwGetTime());
 			TimeStep DeltaTime = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 			DeltaTime.SetglfwTime(time);
-			
+
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(DeltaTime);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 				layer->OnImGuiRender();
+
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}
-		
-		//ImGui::End();
 	}
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
