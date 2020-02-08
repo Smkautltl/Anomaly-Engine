@@ -43,7 +43,7 @@ namespace Anomaly
 		}
 
 		//Processes children of imported meshes
-		for(auto i = 0; i < node->mNumChildren; i++)
+		for(unsigned int i = 0; i < node->mNumChildren; i++)
 		{
 			processNode(node->mChildren[i], scene);
 		}
@@ -56,7 +56,7 @@ namespace Anomaly
 		std::vector<Texture> textures;
 
 		//This processes the vertices-------------------------------------------
-		for(auto i = 0; i < mesh->mNumVertices; i++)
+		for(unsigned int i = 0; i < mesh->mNumVertices; i++)
 		{
 			Vertex vertex;
 
@@ -108,7 +108,7 @@ namespace Anomaly
 		//----------------------------------------------------------------------
 
 		//Processes Indices-----------------------------------------------------
-		for (auto i = 0; i < mesh->mNumFaces; i++)
+		for (unsigned int i = 0; i < mesh->mNumFaces; i++)
 		{
 			aiFace face = mesh->mFaces[i];
 			for (unsigned int j = 0; j < face.mNumIndices; j++)
@@ -126,10 +126,10 @@ namespace Anomaly
 		std::vector<Texture> specularmaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
 		textures.insert(textures.end(), specularmaps.begin(), specularmaps.end());
 
-		std::vector<Texture> normalmaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+		std::vector<Texture> normalmaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
 		textures.insert(textures.end(), normalmaps.begin(), normalmaps.end());
 
-		std::vector<Texture> heightmaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
+		std::vector<Texture> heightmaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height");
 		textures.insert(textures.end(), heightmaps.begin(), heightmaps.end());
 
 		return Mesh(vertices, indices, textures);
@@ -138,7 +138,7 @@ namespace Anomaly
 	std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
 	{
 		std::vector<Texture> textures;
-		for(auto i = 0; i < mat->GetTextureCount(type); i++)
+		for(unsigned int i = 0; i < mat->GetTextureCount(type); i++)
 		{
 			aiString aiStr;
 			mat->GetTexture(type, i, &aiStr);
@@ -180,7 +180,7 @@ namespace Anomaly
 
 		if(data)
 		{
-			GLenum RGBformat;
+			GLenum RGBformat = 0;
 			switch (ncomponents)
 			{
 				case 1:

@@ -21,7 +21,7 @@ namespace Anomaly
 			loadModel(Path);
 		}
 
-		void Draw(std::shared_ptr<Shader> shader);
+		virtual void Draw(std::shared_ptr<Shader> shader);
 
 	private:
 		void loadModel(std::string path);
@@ -36,5 +36,13 @@ namespace Anomaly
 		std::vector<Texture> m_TexturesLoaded;
 		bool m_GammaCorrection;
 	};
-	
+
+	class InstancedModel : public Model
+	{
+		virtual void Draw(std::shared_ptr<Shader> shader) override;
+
+	private:
+		int NoOfInstances;
+		std::vector<glm::vec3> InstancesPos;
+	};
 }

@@ -62,7 +62,9 @@ namespace Anomaly
 		: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
 		{			
 		}
-		BufferElement() {};
+		BufferElement(): Type(), Size(0), Offset(0), Normalized(false)
+		{
+		} ;
 		
 		uint32_t GetComponentCount() const
 		{
@@ -96,7 +98,9 @@ namespace Anomaly
 		{
 			CalculateOffsetsAndStrides();
 		};
-		BufferLayout() {};
+		BufferLayout(): m_Stride(0)
+		{
+		} ;
 		
 		inline const std::vector<BufferElement>& GetElements() const { return m_Elements; };
 		inline uint32_t GetStride() const { return m_Stride; };
@@ -165,6 +169,6 @@ namespace Anomaly
 		static FrameBuffer* Create();
 	
 		virtual void UpdateBuffer(unsigned int textureBuffer) = 0;
-		virtual unsigned int ReturnFrameBuffer(float x, float y, float Width, float Height) = 0;
+		virtual unsigned int ReturnFrameBuffer(float Width, float Height) = 0;
 	};
 }

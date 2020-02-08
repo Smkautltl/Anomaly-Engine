@@ -15,8 +15,8 @@ namespace Anomaly
 		unsigned int Height;
 
 		explicit WindowProps(std::string title = "Anomaly Engine",
-		                     const unsigned int width = 1280,
-		                     const unsigned int height = 720
+		                     const unsigned int width = 1600,
+		                     const unsigned int height = 900
 		)
 			: Title(std::move(title)), Width(width), Height(height)
 		{

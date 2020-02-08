@@ -165,12 +165,15 @@
     <ClInclude Include="src\Anomaly\Events\Event.h" />
     <ClInclude Include="src\Anomaly\Events\KeyEvent.h" />
     <ClInclude Include="src\Anomaly\Events\MouseEvent.h" />
+    <ClInclude Include="src\Anomaly\Primitives\Level.h" />
+    <ClInclude Include="src\Anomaly\Primitives\Object.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Anomaly\Rendering\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Anomaly\Rendering\Primatives\Buffer.h" />
     <ClInclude Include="src\Anomaly\Rendering\Primatives\Camera.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Light.h" />
     <ClInclude Include="src\Anomaly\Rendering\Primatives\Mesh.h" />
     <ClInclude Include="src\Anomaly\Rendering\Primatives\Model.h" />
     <ClInclude Include="src\Anomaly\Rendering\Primatives\Shader.h" />
@@ -342,6 +345,8 @@
     <ClCompile Include="src\Anomaly\Core\Layer.cpp" />
     <ClCompile Include="src\Anomaly\Core\LayerStack.cpp" />
     <ClCompile Include="src\Anomaly\Core\Log.cpp" />
+    <ClCompile Include="src\Anomaly\Primitives\Level.cpp" />
+    <ClCompile Include="src\Anomaly\Primitives\Object.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\OpenGL\OpenGLRendererAPI.cpp" />

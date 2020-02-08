@@ -56,13 +56,48 @@ Anomaly::OpenGLFrameBuffer::OpenGLFrameBuffer()
 {
 	glGenFramebuffers(1, &m_FrameBuffer);
 	Bind();
-
-	glGenTextures(1, &m_textureBuffer);
-	glBindTexture(GL_TEXTURE_2D, m_textureBuffer);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1280.f, 720.f, 0, GL_RGB, GL_UNSIGNED_INT, NULL);
+	glGenTextures(1, &m_TextureBuffer);
+	glBindTexture(GL_TEXTURE_2D, m_TextureBuffer);
+	glGenRenderbuffers(1, &m_RenderBuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, m_RenderBuffer);
+	
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1600, 900, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_textureBuffer, 0);
+	
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_TextureBuffer, 0);
+
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1600, 900);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RenderBuffer);
+
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	{
+		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT)
+		{
+			AE_CORE_ERROR("FrameBuffer is not completed! - Incomplete Attachment");
+		}
+		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER)
+		{
+			AE_CORE_ERROR("FrameBuffer is not completed! - Incomplete Draw Buffer");
+		}
+		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS)
+		{
+			AE_CORE_ERROR("FrameBuffer is not completed! - Incomplete Layer Targets");
+		}
+		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT)
+		{
+			AE_CORE_ERROR("FrameBuffer is not completed! - Missing Attachment");
+		}
+		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE)
+		{
+			AE_CORE_ERROR("FrameBuffer is not completed! - Incomplete Multisample");
+		}
+		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER)
+		{
+			AE_CORE_ERROR("FrameBuffer is not completed! - Incomplete Read Buffer");
+		}
+	}
 	UnBind();
 }
 
@@ -82,14 +117,41 @@ void Anomaly::OpenGLFrameBuffer::UnBind() const
 
 void Anomaly::OpenGLFrameBuffer::UpdateBuffer(unsigned texturebuffer)
 {
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texturebuffer, 0);
-}
-unsigned Anomaly::OpenGLFrameBuffer::ReturnFrameBuffer(float x, float y, float Width, float Height)
-{
-	glViewport(0, 0, Width, Height);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_INT, NULL);
+	glBindTexture(GL_TEXTURE_2D, m_TextureBuffer);
+	
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1280, 720, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_textureBuffer, 0);
-	return m_textureBuffer;
+	
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_TextureBuffer, 0);
+
+	glGenRenderbuffers(1, &m_RenderBuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, m_RenderBuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1280, 720); // use a single renderbuffer object for both a depth AND stencil buffer.
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RenderBuffer);
+}
+unsigned Anomaly::OpenGLFrameBuffer::ReturnFrameBuffer(float Width, float Height)
+{
+	const int iWidth = static_cast<int>(Width);
+	const int iHeight = static_cast<int>(Height);
+	
+	glViewport(0, 0, iWidth, iHeight);
+	
+	Bind();
+	glBindTexture(GL_TEXTURE_2D, m_TextureBuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, m_RenderBuffer);
+	
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, iWidth, iHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_TextureBuffer, 0);
+
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, iWidth, iHeight);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RenderBuffer);
+	UnBind();
+	
+	return m_FrameBuffer;
 }

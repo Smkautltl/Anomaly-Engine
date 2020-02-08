@@ -49,13 +49,13 @@ namespace Anomaly
 		const glm::vec3& GetCameraPos() const { return m_CamPos; }
 		
 
-		void RecalcuteViewMatrix();
-		void RecalcuteProjMatrix(float FOV, float width, float height, float nearValue = 0.1f, float farValue = 100.0f);
-		void RecalcuteCameraRotation();
+		void RecalculateViewMatrix();
+		void RecalculateProjMatrix(float FOV, float width, float height, float nearValue = 0.1f, float farValue = 100.0f);
+		void RecalculateCameraRotation();
 
-		void SetPosition(const glm::vec3& cameraposition) {m_CamPos = cameraposition; RecalcuteViewMatrix(); }
-		void SetYaw(const	float& yaw) {m_Yaw += yaw * m_Sensitvity; RecalcuteCameraRotation(); }
-		void SetPitch(const float& pitch) {m_Pitch += pitch * m_Sensitvity; RecalcuteCameraRotation(); }
+		void SetPosition(const glm::vec3& cameraposition) {m_CamPos = cameraposition; RecalculateViewMatrix(); }
+		void SetYaw(const float& yaw) {m_Yaw += yaw * m_Sensitvity; RecalculateCameraRotation(); }
+		void SetPitch(const float& pitch) {m_Pitch += pitch * m_Sensitvity; RecalculateCameraRotation(); }
 		
 	private:
 		glm::mat4 m_ProjMatrix;
@@ -71,7 +71,7 @@ namespace Anomaly
 		
 		float m_Yaw = -90.0f;
 		float m_Pitch = 0.0f;
-		float m_Sensitvity = 0.05;
+		float m_Sensitvity = 0.05f;
 
 	};
 }

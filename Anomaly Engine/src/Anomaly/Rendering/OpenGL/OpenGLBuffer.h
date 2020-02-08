@@ -52,11 +52,12 @@ namespace Anomaly
 		virtual void UnBind() const override;
 	
 		virtual void UpdateBuffer(unsigned int textureBuffer) override;
-		virtual unsigned int ReturnFrameBuffer(float x, float y, float Width, float Height) override;
+		virtual unsigned int ReturnFrameBuffer(float Width, float Height) override;
 	
 	private:
 		unsigned int m_FrameBuffer;
-		unsigned int m_textureBuffer;
+		unsigned int m_TextureBuffer;
+		unsigned int m_RenderBuffer;
 		
 	};
 }

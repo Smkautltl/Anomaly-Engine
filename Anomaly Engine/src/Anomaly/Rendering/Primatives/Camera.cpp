@@ -5,7 +5,7 @@
 
 namespace Anomaly
 {
-	//Orthographic Camera ----------------------------------------------------------------------------------------------------------------------------------------------
+//Orthographic Camera ----------------------------------------------------------------------------------------------------------------------------------------------
 	OrthoCamera::OrthoCamera(float left, float right, float bottom, float top, float nearZ, float farZ)
 		: m_ProjMatrix(glm::ortho(left, right, bottom, top, nearZ, farZ)), m_ViewMatrix(1.0f)
 	{
@@ -22,12 +22,12 @@ namespace Anomaly
 		m_ViewMatrix = glm::inverse(Transform);
 		m_ViewProjMatrix = m_ProjMatrix * m_ViewMatrix;
 	}
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	//Perspective Camera -----------------------------------------------------------------------------------------------------------------------------------------------
+//Perspective Camera -----------------------------------------------------------------------------------------------------------------------------------------------
 	PerspecCamera::PerspecCamera(float FOV, float width, float height, float nearValue, float farValue)
 	{
-		m_ProjMatrix = glm::perspective(glm::radians(FOV), width/height, nearValue, farValue);
+		m_ProjMatrix = glm::perspective(glm::radians(FOV), width/height, nearValue, farValue) * glm::mat4(-1.0f);
 		m_ViewMatrix = glm::mat4(1.0f);
 		
 		m_CamPos =	glm::vec3(0.0f, 0.0f,  3.0f);
@@ -35,12 +35,12 @@ namespace Anomaly
 		m_CamFront = glm::vec3( 0.0f, 0.0f,  -1.0f);
 	}
 
-	void PerspecCamera::RecalcuteProjMatrix(float FOV, float width, float height, float nearValue, float farValue)
+	void PerspecCamera::RecalculateProjMatrix(float FOV, float width, float height, float nearValue, float farValue)
 	{
 		m_ProjMatrix = glm::perspective(glm::radians(FOV), width/height, nearValue, farValue);
 	}
 
-	void PerspecCamera::RecalcuteCameraRotation()
+	void PerspecCamera::RecalculateCameraRotation()
 	{
 		if(m_Pitch > 89.0f)
 			m_Pitch = 89.0f;
@@ -53,11 +53,9 @@ namespace Anomaly
 
 		m_CamFront = glm::normalize(m_CamRotation);
 	}
-
-	void PerspecCamera::RecalcuteViewMatrix()
+	void PerspecCamera::RecalculateViewMatrix()
 	{
 		m_ViewMatrix = glm::lookAt(m_CamPos, m_CamPos + m_CamFront, m_CamUp);
 	}
-	
-	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

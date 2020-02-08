@@ -279,6 +279,9 @@
     <ClInclude Include="vendor\assimp\include\Vertex.h" />
     <ClInclude Include="vendor\assimp\include\XMLTools.h" />
     <ClInclude Include="vendor\assimp\include\Importer.hpp" />
+    <ClInclude Include="src\Anomaly\Primitives\Level.h" />
+    <ClInclude Include="src\Anomaly\Primitives\Object.h" />
+    <ClInclude Include="src\Anomaly\Rendering\Primatives\Light.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Anomaly\Core\Application.cpp">
@@ -344,6 +347,8 @@
     <ClCompile Include="src\aepch.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\Primatives\Mesh.cpp" />
     <ClCompile Include="src\Anomaly\Rendering\Primatives\Model.cpp" />
+    <ClCompile Include="src\Anomaly\Primitives\Level.cpp" />
+    <ClCompile Include="src\Anomaly\Primitives\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\assimp\include\assimp\color4.inl" />

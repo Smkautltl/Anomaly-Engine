@@ -1,11 +1,5 @@
 ﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
   OpenGLBuffer.cpp
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp(62,49): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp(62,41): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp(89,26): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp(89,19): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp(90,48): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-D:\Programming Learning\C++\Anomaly Engine\Anomaly Engine\src\Anomaly\Rendering\OpenGL\OpenGLBuffer.cpp(90,41): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
 assimp-vc140-mt.lib(assimp-vc140-mt.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
 Model.obj : warning LNK4006: "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored
 Model.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored
